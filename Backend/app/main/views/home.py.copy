@@ -1,0 +1,53 @@
+from flask import Flask, render_template, redirect, url_for, request, flash
+import requests
+import json
+import unicodedata
+import os
+import unittest
+
+
+app = Flask(__name__)
+app.secret_key = b'2%N@0^by##@!k)vx~hjgfcgdfc'
+
+#Loads and index page whe UI starts/opens, this open very well
+@app.route('/')
+def index():
+    return render_template('/home/index.html')
+
+
+
+@app.route('/choose_login')
+def choose_login():
+   return render_template('/home/login.html')
+
+@app.route('/choose_register')
+def choose_register():
+   return render_template('/home/register.html')    
+
+@app.route('/no_account')
+def no_account():
+    return redirect(url_for('choose_register'))
+
+@app.route('/have_account')
+def have_account():
+    return redirect(url_for('choose_login'))
+
+
+
+#Login with details in the db/data created by API
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        
+        return render_template('/home/profile.html')
+
+
+#Register then send to email for verification before logs in
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return render_template('/home/verify_email.html')
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=80) #
