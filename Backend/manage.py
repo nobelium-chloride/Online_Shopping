@@ -15,6 +15,8 @@ from app import blueprint
 from app.main.views.home import home
 from app.main.views.profile import profile
 
+
+
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 
 app.register_blueprint(blueprint)
@@ -25,6 +27,7 @@ app.register_blueprint(profile)
 
 #login_manager = LoginManager()
 #login_manager.init_app(app)
+
 
 app.app_context().push()
 

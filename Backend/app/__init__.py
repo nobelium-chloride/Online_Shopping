@@ -10,6 +10,7 @@ from .main.controller.auth_controller import api as auth_ns
 
 
 app = Flask(__name__)
+app.secret_key = b'2%N@0^by##@!k)vx~'
 
 blueprint = Blueprint('api', __name__, url_prefix='/myapi')
 
