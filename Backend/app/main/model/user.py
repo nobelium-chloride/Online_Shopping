@@ -1,5 +1,5 @@
 from .. import db, flask_bcrypt
-
+from flask_login import UserMixin
 
 import datetime
 import jwt
@@ -8,7 +8,7 @@ from ..config import key
 from typing import Union
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """ User Model for storing user related details """
     __tablename__ = "user"
 
@@ -74,3 +74,4 @@ class User(db.Model):
         return "<User '{}'>".format(self.username)
 
 
+    

@@ -1,5 +1,6 @@
 from app.main.model.user import User
 from ..service.blacklist_service import save_token
+from flask_login import current_user, login_user, login_manager
 
 
 class Auth:
@@ -87,3 +88,4 @@ class Auth:
                 'message': 'Provide a valid auth token.'
             }
             return response_object, 401
+

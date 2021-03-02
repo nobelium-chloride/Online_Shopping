@@ -2,6 +2,7 @@ import os
 import unittest
 import connexion
 from flask_migrate import Migrate, MigrateCommand
+from flask_login import current_user, login_user, login_manager, LoginManager
 
 from flask_script import Manager
 from app.main.model import blacklist
@@ -18,11 +19,12 @@ app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 
 app.register_blueprint(blueprint)
 
-
 #2. Now register your above imported blueprints in the main app
 app.register_blueprint(home)
 app.register_blueprint(profile)
 
+#login_manager = LoginManager()
+#login_manager.init_app(app)
 
 app.app_context().push()
 

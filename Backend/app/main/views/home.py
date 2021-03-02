@@ -4,11 +4,21 @@
     These document is a "blueprint" of my app that renders my static pages. 
     Cretae this blue print then in the main app that will be executed, register the blueprint
 """
-from flask import Blueprint, render_template, abort, request, url_for, redirect
+from flask import Flask, Blueprint, render_template, abort, request, url_for, redirect
+from flask_login import current_user, login_user, login_manager, LoginManager
 from jinja2 import TemplateNotFound
+from ..model.user import User
+from .. import db
+
+
+# import the 
+from ..controller.auth_controller import Auth
+from ..service.auth_helper import login_user
+
 
 # Defining my blueprint for the home pages/views 
 home = Blueprint('home', __name__, template_folder='../../templates/home')
+
 
 #Loads and index page whe UI starts/opens, this open very well
 @home.route('/')
@@ -34,9 +44,17 @@ def have_account():
 #Login with details in the db/data created by API
 @home.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        
-        return render_template('/profile.html')
+    if request.method == "POST":
+        username = request.form['username']
+        user_password = request.form['password']
+
+        user = User.query.filter_by(email = username).first()
+        if user is not None and user.check_password(user_password):
+            user = User()
+            print('Username and Passowords match')
+            return render_template('/profile.html', username=username) 
+    print('Please enter username and/or password')
+    return redirect(url_for('home.choose_login'))
 
 #Register then send to email for verification before logs in
 @home.route('/register', methods=['GET', 'POST'])
