@@ -9,6 +9,8 @@ from flask_login import current_user, login_user, login_manager, LoginManager
 from jinja2 import TemplateNotFound
 from ..model.user import User
 from .. import db
+import jwt
+from datetime import datetime, timedelta
 
 
 # import the 
@@ -52,7 +54,16 @@ def login():
 
         user = User.query.filter_by(email = user_email).first()
 
-        if user is not None and user.check_password(user_password):
+        if user and user.check_password(user_password):
+            if user.admin == 1:
+                session['logged_in'] = True
+                session['email'] = user.email 
+                session['username'] = user.username
+                username = user.username
+                flash('You have successfully logged in as admin.', "success")
+                print('Admin Username and Passwords match', user.username)
+                return render_template('/adminDashboard.html', username=username)
+        
             session['logged_in'] = True
             session['email'] = user.email 
             session['username'] = user.username
@@ -60,6 +71,7 @@ def login():
             flash('You have successfully logged in.', "success")
             print('Username and Passowords match', user.username)
             return render_template('/profile.html', username=username) 
+
     print('Please enter username and/or password')
     return redirect(url_for('home.choose_login'))
 

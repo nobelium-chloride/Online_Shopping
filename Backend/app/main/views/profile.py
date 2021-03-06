@@ -13,7 +13,7 @@ def about(about):
     # Do some stuff
     return render_template('/about.html')
 
-@profile.route('/edit')
-def edit():
+@profile.route('/update')
+def update():
     # Do some stuf
-    return render_template('/edit.html')
+    return render_template('/update.html')

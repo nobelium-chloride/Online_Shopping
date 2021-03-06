@@ -14,7 +14,7 @@ from app import blueprint
 #1. Imported the home blueprint from home package in vews folder
 from app.main.views.home import home
 from app.main.views.profile import profile
-
+from app.main.views.items import items
 
 
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
@@ -24,7 +24,7 @@ app.register_blueprint(blueprint)
 #2. Now register your above imported blueprints in the main app
 app.register_blueprint(home)
 app.register_blueprint(profile)
-
+app.register_blueprint(items)
 #login_manager = LoginManager()
 #login_manager.init_app(app)
 
