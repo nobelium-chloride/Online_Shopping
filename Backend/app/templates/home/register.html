@@ -27,16 +27,32 @@ body {
   margin-top: -85px;
 }
 
+ /**** REGISTERATION PAGE****/
+#register .container #register-row #register-column #register-box {
+  margin-top: 25px;
+  max-width: 800px;
+  height: 680px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#register .container #register-row #register-column #register-box {
+  padding: 20px;
+}
+#register-form #register-link {
+    margin-top: -90px;
+ }
+
+
 </style>
 
 <body>
-    <div id="login">
+    <div id="register"> 
         <h3 class="text-center text-white pt-5">Registration form</h3>
         <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="/register" method="post">
+            <div id="register-row" class="row justify-content-center align-items-center">
+                <div id="register-column" class="col-md-6">
+                    <div id="register-box" class="col-md-12">
+                        <form id="register-form" class="form" action="/register" method="post">
                             <h3 class="text-center text-info">Register</h3>
 
                             <div class="form-row">
@@ -127,7 +143,7 @@ body {
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </body>
 
 </html>
