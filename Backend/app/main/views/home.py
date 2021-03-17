@@ -26,7 +26,8 @@ home = Blueprint('home', __name__, template_folder='../../templates/home')
 @home.route('/')
 def index():
     if 'username' in session:
-        return 'you are already logged as, {}!'.format(escape(session['username']))
+        #return 'you are already logged as, {}!'.format(escape(session['username']))
+        return render_template('/profile.html')
     return render_template('/index.html')
 
 @home.route('/choose_login')
