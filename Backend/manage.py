@@ -2,7 +2,7 @@ import os
 import unittest
 import connexion
 from flask_migrate import Migrate, MigrateCommand
-from flask_login import current_user, login_user, login_manager, LoginManager
+from flask_login import current_user, login_user, login_manager, LoginManager, logout_user
 
 from flask_script import Manager
 from app.main.model import blacklist
@@ -25,8 +25,10 @@ app.register_blueprint(blueprint)
 app.register_blueprint(home)
 app.register_blueprint(profile)
 app.register_blueprint(items)
-#login_manager = LoginManager()
-#login_manager.init_app(app)
+
+#login Manager to use the login/logout functions/methods
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 app.app_context().push()
