@@ -5,12 +5,13 @@
     Cretae this blue print then in the main app that will be executed, register the blueprint
 """
 from flask import Flask, Blueprint, render_template, abort, request, url_for, redirect, flash,session, escape
-from flask_login import current_user, login_user, login_manager, LoginManager
+from flask_login import current_user, login_user, login_manager, LoginManager, logout_user
 from jinja2 import TemplateNotFound
 from ..model.user import User
 from .. import db
 import jwt
 from datetime import datetime, timedelta
+#from flask.ext.login import LoginManager
 
 
 # import the 
@@ -21,6 +22,8 @@ from ..service.auth_helper import login_user
 # Defining my blueprint for the home pages/views 
 home = Blueprint('home', __name__, template_folder='../../templates/home')
 
+#to work on this. Not working
+login_manager.login_view = 'login'
 
 #Loads and index page whe UI starts/opens, this open very well
 @home.route('/')
@@ -79,11 +82,15 @@ def login():
 
 @home.route('/logout')
 def logout():
-    # Removing data from session by setting logged_flag to False
+    #logout user by removing "user id"
+    logout_user()
+
+    #Removing data from session by setting logged_flag to False
     session['logged_in'] = False
     session.pop('username', None)
     session.pop('email', None)
     session.clear()
+    
     return redirect(url_for('home.index'))
 
 
