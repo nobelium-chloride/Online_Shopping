@@ -5,7 +5,7 @@
     Cretae this blue print then in the main app that will be executed, register the blueprint
 """
 from flask import Flask, Blueprint, render_template, abort, request, url_for, redirect, flash,session, escape
-from flask_login import current_user, login_user, login_manager, LoginManager, logout_user
+from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required
 from jinja2 import TemplateNotFound
 from ..model.user import User
 from .. import db
@@ -24,6 +24,7 @@ home = Blueprint('home', __name__, template_folder='../../templates/home')
 
 #to work on this. Not working
 login_manager.login_view = 'login'
+
 
 #Loads and index page whe UI starts/opens, this open very well
 @home.route('/')
@@ -64,6 +65,7 @@ def login():
                 session['email'] = user.email 
                 session['username'] = user.username
                 username = user.username
+
                 flash('You have successfully logged in as admin.', "success")
                 print('Admin Username and Passwords match', user.username)
                 return render_template('/adminDashboard.html', username=username)
@@ -74,22 +76,24 @@ def login():
             username = user.username
             flash('You have successfully logged in.', "success")
             print('Username and Passowords match', user.username)
-            return render_template('/profile.html', username=username) 
+            return render_template('/profile.html', username=username, email=user.email) 
 
     print('Please enter username and/or password')
     return redirect(url_for('home.choose_login'))
 
 
-@home.route('/logout')
+@home.route('/logout', methods=['GET', 'POST'])
+# @login_required --Check how to use this decorator
 def logout():
-    #logout user by removing "user id"
-    logout_user()
 
     #Removing data from session by setting logged_flag to False
     session['logged_in'] = False
     session.pop('username', None)
     session.pop('email', None)
     session.clear()
+
+    #logout user by removing "user id"
+    logout_user()
     
     return redirect(url_for('home.index'))
 
