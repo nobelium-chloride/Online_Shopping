@@ -6,6 +6,7 @@ from flask_login import current_user, login_user, login_manager, LoginManager, l
 
 from flask_script import Manager
 from app.main.model import blacklist
+from app.main.model.user import User
 
 from app.main import create_app, db
 
@@ -51,6 +52,12 @@ def test():
     if result.wasSuccessful():
         return 0
     return 1
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
 
 if __name__ == '__main__':
     manager.run()

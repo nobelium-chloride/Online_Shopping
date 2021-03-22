@@ -5,7 +5,7 @@
     Cretae this blue print then in the main app that will be executed, register the blueprint
 """
 from flask import Flask, Blueprint, render_template, abort, request, url_for, redirect, flash,session, escape
-from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required
+from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required, utils
 from jinja2 import TemplateNotFound
 from ..model.user import User
 from .. import db
@@ -23,15 +23,14 @@ from ..service.auth_helper import login_user
 home = Blueprint('home', __name__, template_folder='../../templates/home')
 
 #to work on this. Not working
-login_manager.login_view = 'login'
-
+#login_manager.login_view = 'login'
 
 #Loads and index page whe UI starts/opens, this open very well
 @home.route('/')
 def index():
     if 'username' in session:
         #return 'you are already logged as, {}!'.format(escape(session['username']))
-        return render_template('/profile.html')
+        return render_template('/userhome.html')
     return render_template('/index.html')
 
 @home.route('/choose_login')
@@ -59,24 +58,34 @@ def login():
 
         user = User.query.filter_by(email = user_email).first()
 
+        username = user.username
+        
         if user and user.check_password(user_password):
             if user.admin == 1:
+                #works
+                login_user(user)
+                
+                #Check how I can use below
                 session['logged_in'] = True
                 session['email'] = user.email 
                 session['username'] = user.username
-                username = user.username
-
+                
                 flash('You have successfully logged in as admin.', "success")
                 print('Admin Username and Passwords match', user.username)
                 return render_template('/adminDashboard.html', username=username)
-        
+
+            #Check how I can use below 
             session['logged_in'] = True
             session['email'] = user.email 
             session['username'] = user.username
             username = user.username
+
+            #works
+            login_user(user)
+
             flash('You have successfully logged in.', "success")
             print('Username and Passowords match', user.username)
-            return render_template('/profile.html', username=username, email=user.email) 
+            return render_template('/userhome.html', username=username, email=user.email) 
 
     print('Please enter username and/or password')
     return redirect(url_for('home.choose_login'))

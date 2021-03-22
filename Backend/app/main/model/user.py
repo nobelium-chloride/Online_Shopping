@@ -1,6 +1,6 @@
 from .. import db, flask_bcrypt
 from flask_login import UserMixin
-
+from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required
 import datetime
 import jwt
 from app.main.model.blacklist import BlacklistToken
@@ -70,8 +70,27 @@ class User(db.Model, UserMixin):
             return 'Invalid token. Please log in again.'
 
 
+    # ADDED THIS
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        return self.email
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False 
+    # ADDED THIS
+
+
     def __repr__(self):
         return "<User '{}'>".format(self.username)
 
 
-    
+   

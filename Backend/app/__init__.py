@@ -14,7 +14,7 @@ from .main.controller.auth_controller import api as auth_ns
 
 
 app = Flask(__name__)
-app.secret_key = b'2%N@0^by##@!k)vx~'
+app.secret_key = b'\x13B\x1c\x7f\xf9\xa7\xd4\xe9\x1e\xb1\x85\xcf\x9e\x1d\xa7\x8f'
 
 # this does not seem to work. Session doesnt time out in 3min
 app.permanent_session_lifetime =  timedelta(minutes=3)

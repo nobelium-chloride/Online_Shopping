@@ -26,7 +26,8 @@
 
 
    <body>
-	
+
+ 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar<span class="sr-only">(current)</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +72,7 @@
     
             
             <ul class="navbar-nav">
-                {% if not (current_user.is_authenticated and current_user.is_active)%}
+                {% if 'username' not in session %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
@@ -85,29 +86,26 @@
                     <span id="cart" class="">
                         <a href="/shop/cart" onclick="ga('send', 'event', 'Top Navigation', 'Click', 'Shopping Cart');"><i class="fa fa-shopping-cart cart" style="color:black !important"><span class="badge" id="ItemsCount">0</span></i></a>
                     </span>
-                </li>
-                <li class="nav-item dropdown">
+                  </li>
+                  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ username }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Profile</a>
+                      <a class="dropdown-item" href="/about">Profile</a>
                       <a class="dropdown-item" href="/dashboard">Dashboard</a>
                       <a class="dropdown-item" href="/applications">Applications</a>
                       <a class="dropdown-item" href="/settings">Settings</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
-                </li>
-                {% endif %}
-
+                  </li>
+                  {% endif %}
             </ul>
-           
-
-
-  
+            
         </div>
-    </nav>	
+    </nav>
+    	
 
 
     <div id="content">
@@ -116,9 +114,11 @@
         {% endblock %}
     </div>
 
+    <hr>
+
     <div id="footer">
         {% block footer %}
-        &copy; Copyright 2010 by <a href="http://onlineshopping.co.za">you</a>.
+        &copy; Copyright 2010 by <a href="http://onlineshopping.co.za"> my online shopping</a>.
         {% endblock %}
     </div>
 

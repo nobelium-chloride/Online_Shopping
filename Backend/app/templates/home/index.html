@@ -1,13 +1,13 @@
-<html>
+<!--- <html>
    <head>
       <link rel="stylesheet" href="/static/styles.css">
 	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
         <link rel="stylesheet" href="/static/styles.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='flip-card.css') }}">
-        <!--<link rel="stylesheet" href="{{ url_for('static', filename='login-form.css') }}">--->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='flip-card.css') }}"> --->
+        <!--- <link rel="stylesheet" href="{{ url_for('static', filename='login-form.css') }}"> --->
+       <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	
 
@@ -84,6 +84,12 @@
  <h1>Welcome to Dnecs Page </h1>
 
    </body>
+</html> --->
 
+{% extends 'base.html' %}
 
-</html> 
+{% block content %}
+    <p class="important">
+      Welcome on my awsome homepage.
+    </p>
+{% endblock %}
