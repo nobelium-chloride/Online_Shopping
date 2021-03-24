@@ -1,11 +1,11 @@
-<html>
+<!-- <html>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<style>
+<!-- <style>
 
 body {
   margin: 0;
@@ -45,7 +45,12 @@ body {
 
 </style>
 
-<body>
+<body> -->
+
+  {% extends "base.html" %}
+
+{% block content %}
+  <div class="container-fluid">
     <div id="register"> 
         <h3 class="text-center text-white pt-5">Registration form</h3>
         <div class="container">
@@ -95,11 +100,11 @@ body {
 
                             <div class="form-group">
                                 <label for="inputAddress">Address 1</label>
-                                <input type="text" class="form-control" id="inputAddress1" placeholder="1234 Main St">
+                                <input type="text" class="form-control" id="inputAddress1" placeholder="Unit 20, Block 8, Complex Aout ">
                               </div>
                               <div class="form-group">
                                 <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="1234 Main St, Bronx">
                               </div>
                               <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -134,8 +139,6 @@ body {
                             <div class="form-group">
                                 <label for="agree_terms" class="text-info"><span>Agree to Terms and Conditions</span> <span><input id="agree_terms" name="agree_terms" type="checkbox"></span></label><br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Register">
-                            </div>
-                            <div id="register-link" class="text-right">
                                 <a href="{{ url_for('home.choose_login')}}" class="text-info">Log In</a>
                             </div>
                         </form>
@@ -144,6 +147,6 @@ body {
             </div>
         </div>
     </div> 
-</body>
+  </div>
+  {% endblock %}
 
-</html>
