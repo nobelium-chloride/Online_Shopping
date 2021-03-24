@@ -8,7 +8,7 @@
 NB: - Some errors and how to fix:
 --
 1. **Target database is not up to date** --> This could happen if you had made chamged to db or db models.
-$ python manage.py db stamp heads
+$ python manage.py db stamp head
 $ python manage db migrate -- message "<ENTER CHANGES YOU MADE TO DB>"
 $ python manage db upgrade
   
