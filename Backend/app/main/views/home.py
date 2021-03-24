@@ -8,15 +8,22 @@ from flask import Flask, Blueprint, render_template, abort, request, url_for, re
 from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required, utils
 from jinja2 import TemplateNotFound
 from ..model.user import User
-from .. import db
+from .. import db, flask_bcrypt
 import jwt
+import uuid
 from datetime import datetime, timedelta
+import datetime
+import dateutil
+from werkzeug.security import generate_password_hash, check_password_hash
 #from flask.ext.login import LoginManager
+import crypt
+import bcrypt
 
 
 # import the 
 from ..controller.auth_controller import Auth
 from ..service.auth_helper import login_user
+from ..service.user_service import save_new_user, save_changes, generate_token
 
 
 # Defining my blueprint for the home pages/views 
@@ -111,6 +118,34 @@ def logout():
 
 
 #Register then send to email for verification before logs in
-@home.route('/register', methods=['GET', 'POST'])
+@home.route('/register', methods=['POST'])
 def register():
-    return render_template('/verify_email.html')
+    if request.method == "POST": 
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        username = request.form['username']
+        password = request.form['password']
+        #confirm_password = request.form.get('confirm_password')
+        address1 = request.form['address1']
+        address2 = request.form['address2']
+        #city = request.form.get('city')
+        #state = request.form.get('state')
+        #zip_code = request.form.get('zip_code')
+
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            flash('Email address already exists')
+            return redirect(url_for('home.choose_register'))
+
+        new_user = User(public_id=str(uuid.uuid4()), registered_on=datetime.datetime.utcnow(), email=email, username=username, password_hash=flask_bcrypt.generate_password_hash(password).decode('utf-8'), first_name=first_name, last_name=last_name, address1= address1, address2=address2)
+    
+        # add the new user to the database
+        db.session.add(new_user)
+        db.session.commit()
+        save_new_user
+    
+
+        #return render_template('/verify_email.html')
+        return redirect(url_for('home.choose_login'))
