@@ -99,36 +99,82 @@
 
  
 {% block content %}
+<h3>Welcome to Dnecs Page, {{ username }} </h3>
+
+<hr>
+
 <!---- THIS IS profile for user Account Information -->
 <div class="container border">
   <div class="row">
-    <label for="username" class="text-info">Username : </label><br>
-    <label for="username" class="text-info"> {{ username }}</label><br> 
+    <div class="col-4">
+      <label for="username" class="text-info">Username : </label><br>
+    </div>
+    <div class="col-8">
+      <label for="username" class="text-info"> {{ username }}</label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="text" name="username" id="username" class="form-control">
   </div>
   <div class="row">
-    <label for="name" class="text-info">Name :</label>
-    <label for="name" class="text-info"> {{ name }}</label>
+    <div class="col-sm-4">
+      <label for="name" class="text-info">Name :</label>
+    </div>
+    <div class="col-sm-8">
+      <label for="name" class="text-info"> {{ first_name }}</label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="text" name="name" id="name" class="form-control">
   </div>
   <div class="row">
-    <label for="surname" class="text-info">Surname :</label><br>
-    <label for="surname" class="text-info"> {{ lastname }} </label>
+    <div class="col-sm-4">
+      <label for="surname" class="text-info">Surname :</label><br>
+    </div>
+    <div class="col-sm-8">
+      <label for="surname" class="text-info"> {{ last_name }} </label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="text" name="surname" id="surname" class="form-control">
   </div>
   <div class="row">
-    <label for="passowrd" class="text-info">Password :</label><br>
-    <label for="password" class="text-info" type="password" value="********"> ******** </label>
+    <div class="col-sm-4">
+      <label for="passowrd" class="text-info">Password :</label><br>
+    </div>
+    <div class="col-sm-8">
+      <label for="password" class="text-info" type="password" value="********"> ******** </label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="password" name="password" id="password" value="********" class="form-control">
   </div>
   <div class="row">
-    <label for="email" class="text-info">email address :</label><br>
-    <label for="email" class="text-info"> {{ email }}</label>
+    <div class="col-sm-4">
+      <label for="email" class="text-info">email address :</label><br>
+    </div>
+    <div class="col-sm-8">
+      <label for="email" class="text-info"> {{ email }}</label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="text" name="username" id="username" class="form-control">
   </div>
   <div class="row">
-    <label for="contact" class="text-info">contact :</label><br>
-    <label for="name" class="text-info"> {{ contact }} </label>
+    <div class="col-sm-4">
+      <label for="contact" class="text-info">contact :</label><br>
+    </div>
+    <div class="col-sm-8">
+      <label for="name" class="text-info"> {{ contact }} </label>
+      <a href="#" class="icon icon-edit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <input type="text" name="contact" id="contact" class="form-control">
   </div>
 </div> 

@@ -6,6 +6,7 @@ import jwt
 from app.main.model.blacklist import BlacklistToken
 from ..config import key
 from typing import Union
+from sqlalchemy_utils import CountryType, Country
 
 
 class User(db.Model, UserMixin):
@@ -19,6 +20,13 @@ class User(db.Model, UserMixin):
     public_id = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(50), unique=True)
     password_hash = db.Column(db.String(100))
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    #contact =
+    #country =
+    address1 = db.Column(db.String(50))
+    address2 = db.Column(db.String(50))
+    #confirmed_at = db.Column(db.DateTime(), nullable=False)
 
     @property
     def password(self):

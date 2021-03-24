@@ -19,8 +19,10 @@ profile = Blueprint('profile', __name__, template_folder='../../templates/profil
 @profile.route('/about')
 def about():
     username = session['username']
+    first_name = session['first_name']
     email = session['email'] 
-    return render_template('/about.html', username=username, email=email)
+    last_name = session['last_name']
+    return render_template('/about.html', username=username, email=email, first_name=first_name, last_name=last_name)
         
 
 @profile.route('/update')

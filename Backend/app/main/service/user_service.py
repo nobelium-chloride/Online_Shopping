@@ -13,7 +13,12 @@ def save_new_user(data):
             email=data['email'],
             username=data['username'],
             password=data['password'],
-            registered_on=datetime.datetime.utcnow()
+            registered_on=datetime.datetime.utcnow(),
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            address1=data['address1'],
+            address2=data['address2']
+            #country=data['country'] ## check also in user.py and dto.py files
         )
         save_changes(new_user)
         return generate_token(new_user)

@@ -116,52 +116,147 @@
 
     <hr>
 
-    <div id="footer">
-        {% block footer %}
-        &copy; Copyright 2010 by <a href="http://onlineshopping.co.za"> my online shopping</a>.
-        {% endblock %}
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div id="disclaimer">
-                <div class="social-icons">
-                    <a href="http://www.facebook.com/onlineshopping" target="_blank" style="color:#fff;" class="learnMore-link">
-                        <i class="fa fa-facebook fa-2x" style="margin-right:5px;"></i>
-                    </a>
-                    <a href="http://www.twitter.com/onlineshopping" target="_blank" style="color:#fff;" class="learnMore-link">
-                        <i class="fa fa-twitter fa-2x" style="margin-right:5px;"></i>
-                    </a>
-                    <a href="https://www.instagram.com/onlineshopping" target="_blank" style="color:#fff;" class="learnMore-link">
-                        <i class="fa fa-instagram fa-2x" style="margin-right:5px;"></i>
-                    </a>
-                    <a href="https://www.youtube.com/user/onlineshopping" target="_blank" style="color:#fff;" class="learnMore-link">
-                        <i class="fa fa-youtube fa-2x" style="margin-right:5px;"></i>
-                    </a>
+    <footer class="footer-container hidden-ma">
+        <footer class="footer-main">
+            <div class="layout">
+                <div class="layout-two-thirds">
+                    <div class="layout layout-small footer-sign-in">
+                        <div class="layout-halfling">
+                            <span class="footer-site-name"></span>
+                        </div>
+                        <div class="layout-halfling">
+                            <div id="jsFooterSignIn">
+                            <div class="footer-sign-in__logged-in">
+                    Hello
+                    <span class="footer-sign-in__name highlight-lob"> {{ username }}</span>
+                    <a href="https://superbalist.com/logout" class="footer-sign-in__message highlight">Not you?</a>
                 </div>
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2">
-                        <ul class="list-inline">
-                            <li>Copyright 2021 Online Shopping South Africa</li>
-                            <li>•</li>
-                            <li>Customer Care Line: <a href="tel:087 487 3287" style="color:#fff; text-decoration:underline;">087 487 3287</a></li>
-                            <li><span class="hidden-xs">•</span></li>
-                            <li><a onclick="ga('send', 'event', 'Footer Navigation', 'Click', 'Email');" href="mailto:info@dnecs.co.za" style="color:#fff; text-decoration:underline;">info@dnecs.co.za</a></li>
-                        </ul>
+                </div>
+                        </div>
+                    </div>
+                    <div class="layout accordion collapse-top accordion-chrome__footer" data-accordion-start="all-closed" data-accordion-type="open-single">
+                        <div class="layout-third nav-lob accordion-segment">
+                            <h2 class="nav-title"><a href="#" class="accordion-toggle">Account</a></h2>
+                            <nav class="nav nav-y accordion-content">
+                                <ul>
+                                    <li><a href="https://accounts.superbalist.com/my_account" rel="nofollow">Account Details</a></li>
+                                    <li><a href="https://accounts.superbalist.com/orders">Orders</a></li>
+                                    <li><a href="https://accounts.superbalist.com/returns">Returns &amp; Exchanges</a></li>
+                                    <li><a href="https://accounts.superbalist.com/wishlist" rel="nofollow">Wishlist</a></li>
+                                    <li><a href="https://accounts.superbalist.com/subscriptions/preferences" rel="nofollow">Notification Settings</a></li>
+                                    <li><a href="https://superbalist.com/egifts_index" rel="nofollow">Buy Gift Vouchers</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="layout-third nav-lob accordion-segment">
+                            <h2 class="nav-title"><a href="#" class="accordion-toggle">Client concierge</a></h2>
+                            <nav class="nav nav-y accordion-content">
+                                <ul>
+                                    <li><a href="https://accounts.superbalist.com/support">Help Centre</a></li>
+                                    <li><a href="https://accounts.superbalist.com/faq">FAQ</a></li>
+                                    <li><a href="https://superbalist.com/landing/somanywaystopay">Payment Options</a></li>
+                                    <li><a href="https://superbalist.com/landing/deliverycostoptions">Delivery Options</a></li>
+                                    <li><a href="https://superbalist.com/landing/clickcollect">Click &amp; Collect</a></li>
+                                    <li><a href="https://superbalist.com/returns_policy">Returns Policy</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="layout-third nav-lob accordion-segment">
+                            <h2 class="nav-title"><a href="#" class="accordion-toggle">The Company</a></h2>
+                            <nav class="nav nav-y accordion-content">
+                                <ul>
+                                    <li><a href="https://superbalist.com/about_us">About Us</a></li>
+                                    <li><a href="https://superbalist.com/careers">Careers</a></li>
+                                    <li><a href="https://accounts.superbalist.com/support/contact_us">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    Online Shopping has branches throughout South Africa in the Eastern Cape, Freestate, Gauteng, KwaZulu Natal, Mpumalanga, North Western, Northern Cape, Western Cape
-                </div>
-                <div class="row">
-                    Gauteng  |  Cape Town  |  Pretoria  |  Bloemfontein  |  Port Elizabeth  |   Durban  |  Pietermaritzburg  |  Potchefstroom  |  Kimberley
-                </div>
-                <div class="row">
-                    <br>
+                <div class="layout-one-third">
+                    <div class="user-count" id="jsContainerOnlineUserCounter">
+                        <span class="user-count-no jsSpanUsersOnline">3679</span>
+                        <span class="user-count-label">Superbalists online</span>
+                    </div>
+                    <div class="footer-highschool">
+                        <a href="http://facebook.com/Superbalist" class="btn-connect"><span class="icon icon-fb"></span></a>
+                        <a href="http://twitter.com/superbalist" class="btn-connect"><span class="icon icon-twitter"></span></a>
+                        <a href="http://www.pinterest.com/superbalist" class="btn-connect"><span class="icon icon-pinterest"></span></a>
+                        <a href="http://instagram.com/superbalist" class="btn-connect"><span class="icon icon-instagram"></span></a>
+                    </div>
+                    <div id="jsFooterAppLinks" class="footer-app-installs">
+                                                                            <a href="#jsModalSmsAppLink" class="modal-link" data-modaltype="inline" data-modalwidth="600">
+                                    <span class="icon icon-ios-app">iOS App</span>
+                                </a>
+                                <a href="#jsModalSmsAppLink" class="modal-link" data-modaltype="inline" data-modalwidth="600">
+                                    <span class="icon icon-google-play">Android App</span>
+                                </a>
+                                                                </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div id="jsModalSmsAppLink" class="modal-target">
+                <div class="layout form-group">
+                    <div class="layout">
+                        <div class="pdp-notice__text">Please provide your mobile number to receive a one-time SMS, to
+                            download the Superbalist app on your Apple or Android device.
+                        </div>
+                    </div>
+                    <div class="layout">
+                        <div class="layout-two-thirds">
+                            <input id="jsSmsAppLinkNumber" placeholder="074 123 4567" class="jsInputMask" data-inputmask="'mask': '999 999 9999'" name="tel" type="text" value="">						<div id="jsSmsAppLinkNoticeResult" class="pdp-notice__result msg" style="display:none;"></div>
+                        </div>
+                        <div class="layout-one-third">
+                            <button id="jsSmsAppLinkSendSms" class="btn btn-quaternary btn-small" style="width: 100%">SEND
+                                SMS
+                            </button>
+                        </div>
+                    </div>
+                    <div class="layout">
+                        <p class="pdp-notice__text">Find out more about the Superbalist app:</p>
+                        <a href="https://appsto.re/za/OUxT9.i" target="_blank"><span class="icon icon-ios-app">iOS App</span></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.superbalist.android" target="_blank"><span class="icon icon-google-play">Android App</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <footer class="footer-partners">
+            <div class="layout layout-small">
+                <div class="layout-two-thirds">
+                    <ul class="payment-icons">
+                        <li class="icon icon-visa">VISA</li>
+                        <li class="icon icon-mastercard">Mastercard</li>
+                        <li class="icon icon-eft">EFT</li>
+                        <li class="icon icon-payfast">Payfast</li>
+                        <li class="icon icon-ebucks">eBucks</li>
+                        <li class="icon icon-mobicred">Mobicred</li>
+                        <li class="icon icon-snapscan">SnapScan</li>
+                        <li class="icon icon-ozow">SnapScan</li>
+                        <li class="icon icon-payflex">Payflex</li>
+                    </ul>
+                </div>
+                <div class="layout-one-third">
+                    <div class="security-icons">
+                        <a href="#" class="jsAnchorSecureSiteSeal">
+                            <span class="icon icon-lock"></span><span class="icon-link-txt">100% secure</span>
+                        </a>
+                        <a href="#" class="jsAnchorSecureSiteSeal">
+                            <span class="icon icon-norton"></span>
+                        </a>
+                        <span class="security-icons" id="trusted-badge" style="padding-left: 0px; font-size: 0px;"><div id="trustbadge-custom-desktop-container-98e3dadd90eb493088abdc5597a70810" style="position: relative; display: inline-block;"><div class="_1gwv20v"><div id="minimized-trustbadge-98e3dadd90eb493088abdc5597a70810" class="_1btvbd8"><p id="trustbadge-minimized-menu-button-98e3dadd90eb493088abdc5597a70810" class="_1iu1jow"><span class="_1jbkkgd">...</span></p><div class="_1n0ck3g"><div class="_1e4xgfo"><svg version="1.1" height="22.40103076923077" width="22.40103076923077" viewBox="0 0 32 32" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: black; width: auto;"><path d="M0 16c0-8.837 7.163-16 16-16s16 7.163 16 16c0 8.837-7.163 16-16 16s-16-7.163-16-16zM16 26.080c5.567 0 10.080-4.513 10.080-10.080s-4.513-10.080-10.080-10.080c-5.567 0-10.080 4.513-10.080 10.080s4.513 10.080 10.080 10.080zM20.25 19.114c-1.466 2.17-3.52 4.16-6.246 4.16-2.899 0-4.589-1.818-4.589-4.749 0-4.749 3.52-9.402 8.448-9.402 1.658-0.016 3.898 0.653 3.898 2.662 0 3.6-5.642 4.8-8.416 5.514-0.105 0.536-0.174 1.163-0.192 1.802-0 1.258 0.668 2.406 2.038 2.406 1.786 0 3.219-1.722 4.272-2.995zM18.72 11.37c0-0.733-0.413-1.306-1.178-1.306-2.294 0-3.475 4.461-3.92 6.214 2.131-0.637 5.098-2.39 5.098-4.909z"></path></svg></div><div class="_m4mhhg"><div id="ratingStarsContainer-98e3dadd90eb493088abdc5597a70810" class="_1gnwejw"><div class="_1ng0f7s"><div class="_tw2be0"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="lightgray" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: lightgray; width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="lightgray" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_tw2be0"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="lightgray" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: lightgray; width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="lightgray" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_tw2be0"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="lightgray" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: lightgray; width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="lightgray" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_tw2be0"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="lightgray" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: lightgray; width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="lightgray" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_nrqc0b"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="lightgray" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: lightgray; width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="lightgray" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div></div><div class="_8taoja"><div class="_1u4mxxk"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="#FFDC0F" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: rgb(255, 220, 15); width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="#FFDC0F" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_1u4mxxk"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="#FFDC0F" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: rgb(255, 220, 15); width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="#FFDC0F" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_1u4mxxk"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="#FFDC0F" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: rgb(255, 220, 15); width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="#FFDC0F" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_1u4mxxk"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="#FFDC0F" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: rgb(255, 220, 15); width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="#FFDC0F" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div><div class="_y7qs8b"><svg height="7.906246153846153" width="8.400386538461538" viewBox="0 0 34 32" version="1.1" fill="#FFDC0F" style="display: inline; overflow: auto; background: none; padding: 0px; float: none; line-height: inherit; height: auto; margin-bottom: inherit; fill: rgb(255, 220, 15); width: auto; vertical-align: top;"><g id="⭐️-Brand-Elements"><polygon id="⭐️-Star-State" fill="#FFDC0F" points="16.9973404 0 12.9840426 12.2184211 0 12.2236842 10.5053191 19.7763158 6.49734043 32 16.9973404 24.4473684 27.5053191 32 23.4946809 19.7763158 34 12.2236842 21.0159574 12.2184211"></polygon></g></svg></div></div></div><p class="_1ld4r4m">Excellent</p><p class="_1w5llv4"><span class="_1geiv5n">4.62</span>/5.00</p></div></div></div></div></div><div id="trustbadge-custom-mobile-container-98e3dadd90eb493088abdc5597a70810" style="position: relative; display: inline-block;"></div></span>
+                    </div>
+                </div>
+            </div>
+            <div class="layout collapse-top terms-conditions">
+                <nav class="nav nav-x nav-lob">
+                    <ul>
+                        <li><a href="https://superbalist.com/terms_and_conditions">Terms &amp; Conditions</a></li>
+                        <li><a href="https://superbalist.com/terms_and_conditions#privacy_policy">Privacy Policy</a></li>
+                        <li><a href="https://www.takealot.com/about/takealot-delivery-team" target="_blank">Fulfilment by Takealot Delivery Team</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    </footer>
 
    </body>
 
