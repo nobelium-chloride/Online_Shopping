@@ -81,7 +81,7 @@ def login():
 
             flash('You have successfully logged in.', "success")
             print('Username and Passowords match', user.username)
-            return render_template('/userhome.html', username=username, email=user.email, first_name=user.first_name) 
+        return render_template('/userhome.html', username=username, email=user.email, first_name=user.first_name) 
 
     print('Please enter username and/or password')
     return render_template('/login.html')
@@ -103,7 +103,7 @@ def logout():
 
 
 #Register then send to email for verification before logs in
-@home.route('/register', methods=['POST'])
+@home.route('/register', methods=['GET','POST'])
 def register():
     if request.method == "POST": 
         first_name = request.form['first_name']
@@ -122,7 +122,7 @@ def register():
 
         if user:
             flash('Email address already exists')
-            return render_template('/register.html')
+            return render_template('home.login')
 
         if password == confirm_password:
             correct_pass = flask_bcrypt.generate_password_hash(password).decode('utf-8')
@@ -138,9 +138,8 @@ def register():
             #return render_template('/verify_email.html')
             return render_template('/verify_email.html')
         else:
-           flash('Passwords do not match') 
-            
-    return render_template('verify_email.html')
+           flash('Passwords do not match')
+    return render_template('register.html')
 
     
         

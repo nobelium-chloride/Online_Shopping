@@ -1,4 +1,4 @@
-<html>
+<!---<html>
 
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -9,14 +9,14 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='flip-card.css') }}">
 	<!--<link rel="stylesheet" href="{{ url_for('static', filename='login-form.css') }}">--->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<!---<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --->
     <!------ Include the above in your HEAD tag ---------->
-</head>
+ <!---</head>
 
 <style>
 body {
@@ -55,8 +55,10 @@ body {
 		  </div>
 		{% endfor %}
 	  {% endif %}
-	{% endwith %}
-	{% block body %}{% endblock %}
+	{% endwith %} --->
+  {% extends "base.html" %}
+
+	{% block content %}
 
 
         <div class="container">
@@ -85,7 +87,8 @@ body {
                 </div>
             </div>
         </div>
-    </div>
+        {% endblock %}
+   <!---- </div>
 </body>
 
 </html>
