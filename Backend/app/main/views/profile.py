@@ -22,7 +22,8 @@ def about():
     first_name = session['first_name']
     email = session['email'] 
     last_name = session['last_name']
-    return render_template('/about.html', username=username, email=email, first_name=first_name, last_name=last_name)
+    return render_template('/about.html', username=username, email=email, first_name=first_name, last_name=last_name )
+    
         
 
 @profile.route('/update')

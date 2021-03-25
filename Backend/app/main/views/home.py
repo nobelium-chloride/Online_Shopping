@@ -102,14 +102,14 @@ def login():
 
 
 @home.route('/logout', methods=['GET', 'POST'])
-# @login_required --Check how to use this decorator
+@login_required
 def logout():
 
     #Removing data from session by setting logged_flag to False
-    session['logged_in'] = False
-    session.pop('username', None)
-    session.pop('email', None)
-    session.clear()
+    #session['logged_in'] = False
+    #session.pop('username', None)
+    #session.pop('email', None)
+    #session.clear()
 
     #logout user by removing "user id"
     logout_user()
