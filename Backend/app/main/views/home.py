@@ -126,7 +126,7 @@ def register():
         email = request.form['email']
         username = request.form['username']
         password = request.form['password']
-        #confirm_password = request.form.get('confirm_password')
+        confirm_password = request.form.get('confirm_password')
         address1 = request.form['address1']
         address2 = request.form['address2']
         #city = request.form.get('city')
@@ -139,13 +139,20 @@ def register():
             flash('Email address already exists')
             return redirect(url_for('home.choose_register'))
 
-        new_user = User(public_id=str(uuid.uuid4()), registered_on=datetime.datetime.utcnow(), email=email, username=username, password_hash=flask_bcrypt.generate_password_hash(password).decode('utf-8'), first_name=first_name, last_name=last_name, address1= address1, address2=address2)
-    
-        # add the new user to the database
-        db.session.add(new_user)
-        db.session.commit()
-        save_new_user
-    
+        if password == confirm_password:
+            correct_pass = flask_bcrypt.generate_password_hash(password).decode('utf-8')
+        
+            new_user = User(public_id=str(uuid.uuid4()), registered_on=datetime.datetime.utcnow(), email=email, username=username, password_hash=correct_pass, first_name=first_name, last_name=last_name, address1= address1, address2=address2)
+        
+            #add the new user to the database
+            save_changes(new_user)
+        
+            #This is what I need to use. This single like
+            save_new_user
+            #return render_template('/verify_email.html')
+            return redirect(url_for('home.choose_login'))
+            
+        return 'passwords not the same'
 
-        #return render_template('/verify_email.html')
-        return redirect(url_for('home.choose_login'))
+    
+        
