@@ -146,13 +146,16 @@ def register():
         
             #add the new user to the database
             save_changes(new_user)
-        
+            flash('You have registered successfully')
             #This is what I need to use. This single like
             save_new_user
+
             #return render_template('/verify_email.html')
-            return redirect(url_for('home.choose_login'))
+            return render_template('/verify_email.html')
+        else:
+           flash('Passwords do not match') 
             
-        return 'passwords not the same'
+    return render_template('verify_email.html')
 
     
         
