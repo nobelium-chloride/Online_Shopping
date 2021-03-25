@@ -40,21 +40,7 @@ def index():
         return render_template('/userhome.html')
     return render_template('/index.html')
 
-@home.route('/choose_login')
-def choose_login():
-   return render_template('/login.html')
 
-@home.route('/choose_register')
-def choose_register():
-   return render_template('/register.html')    
-
-@home.route('/no_account')
-def no_account():
-    return redirect(url_for('home.choose_register'))
-
-@home.route('/have_account')
-def have_account():
-    return redirect(url_for('home.choose_login'))
 
 #Login with details in the db/data created by API
 @home.route('/login', methods=['GET', 'POST'])
@@ -98,18 +84,17 @@ def login():
             return render_template('/userhome.html', username=username, email=user.email, first_name=user.first_name) 
 
     print('Please enter username and/or password')
-    return redirect(url_for('home.choose_login'))
+    return render_template('/login.html')
 
 
 @home.route('/logout', methods=['GET', 'POST'])
-@login_required
 def logout():
 
     #Removing data from session by setting logged_flag to False
-    #session['logged_in'] = False
-    #session.pop('username', None)
-    #session.pop('email', None)
-    #session.clear()
+    session['logged_in'] = False
+    session.pop('username', None)
+    session.pop('email', None)
+    session.clear()
 
     #logout user by removing "user id"
     logout_user()
@@ -137,7 +122,7 @@ def register():
 
         if user:
             flash('Email address already exists')
-            return redirect(url_for('home.choose_register'))
+            return render_template('/register.html')
 
         if password == confirm_password:
             correct_pass = flask_bcrypt.generate_password_hash(password).decode('utf-8')

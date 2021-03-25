@@ -29,7 +29,7 @@ app.register_blueprint(items)
 
 #login Manager to use the login/logout functions/methods
 login_manager = LoginManager()
-login_manager.login_view = 'home.login' # Just added this
+login_manager.login_view = '/home.login' # Just added this
 login_manager.init_app(app)
 
 
