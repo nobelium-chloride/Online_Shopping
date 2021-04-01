@@ -7,6 +7,7 @@ from flask_login import current_user, login_user, login_manager, LoginManager, l
 from flask_script import Manager
 from app.main.model import blacklist
 from app.main.model.user import User
+from app.main.model.product import Category, Category
 
 from app.main import create_app, db
 
