@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            
+            {% if categories %}
+            <h1 class="text-center mt-5"> Add Category </h1>
+            <form action="/add_category" method="POST">
+                <input type="text" name="category" class="form-control">
+                <input type="submit" value="Add Category" class="btn btn-info mt2"> 
+            </form>
+            {% else %}
+            <h1 class="text-center mt-5"> Add Brand </h1>
+            <form action="/add_brand" method="POST">
+                <input type="text" name="brand" class="form-control">
+                <input type="submit" value="Add Brand" class="btn btn-info mt2"> 
+            </form>
+            {% endif %}
+            {% if products %}
+            <h1 class="text-center mt-5"> Add a Product </h1> 
+            <form action="/add_product" method="POST">
+                <div class="form-group">
+                    <label for="first_name">Name</label>
+                    <input type="text" class="form-control" name='product_name' id='product_name' placeholder="Product name">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="category"> Product Category</label>
+                      <!-- <input type="text" class="form-control" name='category_name' id='category_name' placeholder="Category name"> -->
+                      <select name="category" id="category" class="form-control" required>
+                        <option value=""> Select a category </option>
+                        {% for category in categories %}
+                        <option value="category.id"> {{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="brand">Product Brand</label>
+                        <!-- <input type="text" class="form-control" name='brand_name' id='brand_name' placeholder="Brand name"> -->
+                        <select name="brand" id="brand" class="form-control" required>
+                            <option value=""> Select a brand </option>
+                            {% for brand in brands %}
+                            <option value="{{ brand.id }}"> {{ brand.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="price">Price</label>
+                      <input type="text" class="form-control" name='price' id='price' placeholder="Price">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="discount">Discount</label>
+                      <input type="text" class="form-control" name='discount' id='discount' placeholder="Discount?">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="stock">Stock</label>
+                      <input type="text" class="form-control" name='stock' id='price' placeholder="Stock">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="color">Color</label>
+                      <input type="text" class="form-control" name='color' id='color' placeholder="Color">
+                    </div>
+                </div>
+                
+                <input type="submit" value="Add product" class="btn btn-info mt2"> 
+            </form>
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}

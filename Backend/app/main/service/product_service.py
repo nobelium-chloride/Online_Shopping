@@ -8,6 +8,7 @@ def get_all_categories():
 def get_all_brands():
     return Brand.query.all()
 
+
 def save_new_brand(data):
     brand = Brand.query.filter_by(name=data['name']).first()
     if not brand:
@@ -18,7 +19,8 @@ def save_new_brand(data):
             'status': 'fail',
             'message': 'Brand already exists. Please Create new one.',
         }
-        return response_object, 409
+        return response_object
+
 
 def save_new_category(data):
     category = Category.query.filter_by(name=data['name']).first()
@@ -30,7 +32,7 @@ def save_new_category(data):
             'status': 'fail',
             'message': 'Category already exists. Please Create new one.',
         }
-        return response_object, 409
+        return response_object
 
 def save_changes(data):
     db.session.add(data)

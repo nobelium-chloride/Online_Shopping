@@ -63,3 +63,11 @@ def load_user(user_id):
 
 if __name__ == '__main__':
     manager.run()
+
+
+#Use this to delete/migrate db; when drop does not allow, then migrate again#
+#with app.app_context():
+    #if db.engine.url.drivername == 'sqlite':
+        #migrate.init_app(app, db, render_as_batch=True)
+    #else:
+        #migrate.init_app(app, db)
