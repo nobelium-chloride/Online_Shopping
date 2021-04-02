@@ -6,13 +6,13 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             
-            {% if categories %}
+            {% if add_a_category %}
             <h1 class="text-center mt-5"> Add Category </h1>
             <form action="/add_category" method="POST">
                 <input type="text" name="category" class="form-control">
                 <input type="submit" value="Add Category" class="btn btn-info mt2"> 
             </form>
-            {% elif brands %}
+            {% elif add_a_brand %}
             <h1 class="text-center mt-5"> Add Brand </h1>
             <form action="/add_brand" method="POST">
                 <input type="text" name="brand" class="form-control">
@@ -23,13 +23,12 @@
             <form action="/add_product" method="POST">
                 <div class="form-group">
                     <label for="product">Name</label>
-                    <input type="text" class="form-control" name='product' id='product' placeholder="Product name">
-                </div>
+                    <input type="text" class="form-control" name="product" id="product" placeholder="Product name">
+               </div> 
 
-                <div class="form-row">
+               <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="category"> Product Category</label>
-                      <!-- <input type="text" class="form-control" name='category_name' id='category_name' placeholder="Category name"> -->
                       <select name="category" id="category" class="form-control" required>
                         <option value=""> Select a category </option>
                         {% for category in categories %}
@@ -40,7 +39,6 @@
                     
                     <div class="form-group col-md-6">
                         <label for="brand">Product Brand</label>
-                        <!-- <input type="text" class="form-control" name='brand_name' id='brand_name' placeholder="Brand name"> -->
                         <select name="brand" id="brand" class="form-control" required>
                             <option value=""> Select a brand </option>
                             {% for brand in brands %}
@@ -57,7 +55,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="discount">Discount</label>
-                      <input type="text" class="form-control" name='discount' id='discount' placeholder="Discount?">
+                      <input type="text" class="form-control" name='discount' id='discount' placeholder="Discount">
                     </div>
                 </div>
 
@@ -72,10 +70,52 @@
                     </div>
                 </div>
                 
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" name="description" id="description" rows="4" cols="50" placeholder="Product Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image_main">Main Image</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_main" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                </div>
+
+                <div class="form-row">
+                   <div class="form-group col-md-4">
+                       <label for="image_1">Image_1</label>
+                       <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_1" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="image_2">image_2</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_2"required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                          </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="image_3">image_3</label>
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_3" required>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <input type="submit" value="Add product" class="btn btn-info mt2"> 
             </form>
             {% endif %}
-        </div>
+
+        </div> 
         <div class="col-md-3"></div>
     </div>
 </div>

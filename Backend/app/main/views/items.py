@@ -5,7 +5,7 @@ from flask import Flask, Blueprint, render_template, abort, request, url_for, re
 from flask_login import current_user, login_manager, LoginManager, login_required
 from jinja2 import TemplateNotFound
 from ..model.user import User
-from ..model.product import Brand, Category
+from ..model.product import Brand, Category, Product
 from ..service.product_service import save_changes, save_new_brand, save_new_category
 from .. import db
 import jwt
@@ -37,7 +37,7 @@ def add_category():
         
         flash(f'The Category  {category_name} has been added to the database', "success")
         return redirect(url_for("items.add_category"))
-    return render_template('/category.html', username=username, categories="categories")
+    return render_template('/category.html', username=username, add_a_category="add_a_category")
 
 
 @items.route('/add_brand', methods=['GET', 'POST'])
@@ -55,17 +55,36 @@ def add_brand():
         
         #flash(f'The Brand {brand_name} has been added to the database', "success")
         return redirect(url_for("items.add_brand"))
-    return render_template('/category.html', username=username, brands="brands")
+    return render_template('/category.html', username=username, add_a_brand="add_a_brand")
 
 
 
 @items.route('/add_product', methods=['GET', 'POST'])
 def add_product():
-    # Do some stuff
-    brands = Brand.query.all()
-    categories = Category.query.all()
     username = User.username
+    brand = Brand.query.all()
+    category = Category.query.all()
 
-        #flash(f'The Brand {brand_name} has been added to the database', "success")
-    #return redirect(url_for("items.add_product"))
-    return render_template('/category.html', username=username, brands=brands, categories=categories)
+    if request.method=="POST":
+        product = request.form['product']
+        price = request.form['price']
+        stock = request.form['stock']
+        discount = request.form['discount']
+        color = request.form['color']
+        category_name = request.form['category']
+        brand_name = request.form['brand']
+        # Add discriprion and image fields to forms as well as db
+        description = request.form['description']
+        image_main = request.form['image_main']
+        image_1 = request.form['image_1']
+        image_2 = request.form['image_2']
+        image_3 = request.form['image_3']
+        
+
+
+        product = Product(name=product, price=price, stock=stock, discount=discount, color=color, category=category_name, brand=brand_name, description=description, image_main=image_main, image_1=image_1, image_2=image_2, image_3=image_3)
+        save_changes(product)
+        return redirect(url_for("items.add_product"))
+
+    #products = Product.query.all()
+    return render_template('/category.html', username=username, brands=brand, categories=category, add_a_product="add_a_product")
