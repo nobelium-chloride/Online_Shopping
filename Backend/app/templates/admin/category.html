@@ -12,19 +12,18 @@
                 <input type="text" name="category" class="form-control">
                 <input type="submit" value="Add Category" class="btn btn-info mt2"> 
             </form>
-            {% else %}
+            {% elif brands %}
             <h1 class="text-center mt-5"> Add Brand </h1>
             <form action="/add_brand" method="POST">
                 <input type="text" name="brand" class="form-control">
                 <input type="submit" value="Add Brand" class="btn btn-info mt2"> 
             </form>
-            {% endif %}
-            {% if products %}
+            {% else %}
             <h1 class="text-center mt-5"> Add a Product </h1> 
             <form action="/add_product" method="POST">
                 <div class="form-group">
-                    <label for="first_name">Name</label>
-                    <input type="text" class="form-control" name='product_name' id='product_name' placeholder="Product name">
+                    <label for="product">Name</label>
+                    <input type="text" class="form-control" name='product' id='product' placeholder="Product name">
                 </div>
 
                 <div class="form-row">

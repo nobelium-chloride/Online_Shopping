@@ -62,17 +62,10 @@ def add_brand():
 @items.route('/add_product', methods=['GET', 'POST'])
 def add_product():
     # Do some stuff
-    
-    #if request.method=="POST":
-        #name = request.form['name']
-        #price = request.form['price']
-        #name = request.form['name']
-        #name = request.form['name']
-        #name = request.form['name']
-        #name = request.form['name']
     brands = Brand.query.all()
     categories = Category.query.all()
+    username = User.username
 
         #flash(f'The Brand {brand_name} has been added to the database', "success")
     #return redirect(url_for("items.add_product"))
-    return render_template('/category.html', brands=brands, categories=categories, products="products")
+    return render_template('/category.html', username=username, brands=brands, categories=categories)
