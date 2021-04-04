@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, abort, request, url_for, redirect
 from jinja2 import TemplateNotFound
+import os
+from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_class
 
 from flask import Flask, Blueprint, render_template, abort, request, url_for, redirect, flash,session, escape
 from flask_login import current_user, login_manager, LoginManager, login_required
@@ -8,16 +10,22 @@ from ..model.user import User
 from ..model.product import Brand, Category, Product
 from ..service.product_service import save_changes, save_new_brand, save_new_category
 from .. import db
+from ...main import create_app
 import jwt
 from datetime import datetime, timedelta
-
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
+from secrets import token_hex
+import secrets
+from werkzeug import secure_filename, FileStorage
+import datetime
 
 # import the 
 from ..controller.auth_controller import Auth
 from ..service.auth_helper import login_user
 from .home import login
 
-
+photos = UploadSet('photos', IMAGES)
 
 items = Blueprint('items', __name__, template_folder='../../templates/admin')
 
@@ -66,24 +74,28 @@ def add_product():
     category = Category.query.all()
 
     if request.method=="POST":
-        product = request.form['product']
+        name = request.form['product']
         price = request.form['price']
         stock = request.form['stock']
         discount = request.form['discount']
         color = request.form['color']
-        category_name = request.form['category']
-        brand_name = request.form['brand']
+        category_name = request.form.get('category')
+        brand_name = request.form.get('brand')
         # Add discriprion and image fields to forms as well as db
         description = request.form['description']
-        image_main = request.form['image_main']
-        image_1 = request.form['image_1']
-        image_2 = request.form['image_2']
-        image_3 = request.form['image_3']
-        
 
 
-        product = Product(name=product, price=price, stock=stock, discount=discount, color=color, category=category_name, brand=brand_name, description=description, image_main=image_main, image_1=image_1, image_2=image_2, image_3=image_3)
+        #The below can save a file to folder images
+        image_main=photos.save(request.files.get('image_main'), name=secrets.token_hex(10) + ".")
+        image_1=photos.save(request.files.get('image_1'), name=secrets.token_hex(10) + ".")
+        image_2=photos.save(request.files.get('image_2'), name=secrets.token_hex(10) + ".")
+        image_3=photos.save(request.files.get('image_3'), name=secrets.token_hex(10) + ".")
+        #image_main.save(image_main)
+
+        product = Product(name=name, price=price, stock=stock, discount=discount, color=color, category_id=category_name, brand_id=brand_name, description=description, pub_date=datetime.datetime.utcnow(), image_main=image_main, image_1=image_1,image_2=image_2, image_3=image_3)
         save_changes(product)
+        #db.session.add(product)
+        #flash(f'The product {product} has been added to the product table', 'Success')
         return redirect(url_for("items.add_product"))
 
     #products = Product.query.all()

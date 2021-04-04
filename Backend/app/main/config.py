@@ -1,4 +1,5 @@
 import os
+from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_class
 
 # uncomment the line below for postgres database url from environment variable
 # postgres_local_base = os.environ['DATABASE_URL']
@@ -16,7 +17,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, '../static/images')
 
 class TestingConfig(Config):
     DEBUG = True

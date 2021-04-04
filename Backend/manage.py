@@ -19,6 +19,7 @@ from app.main.views.profile import profile
 from app.main.views.items import items
 
 
+
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 
 app.register_blueprint(blueprint)
