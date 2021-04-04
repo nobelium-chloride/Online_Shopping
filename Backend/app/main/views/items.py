@@ -100,3 +100,10 @@ def add_product():
 
     #products = Product.query.all()
     return render_template('/category.html', username=username, brands=brand, categories=category, add_a_product="add_a_product")
+
+
+
+@items.route('/view_products')
+def view_products():
+    products = Product.query.all()
+    return render_template('/category.html', products=products, view_all_products="view_all_products")

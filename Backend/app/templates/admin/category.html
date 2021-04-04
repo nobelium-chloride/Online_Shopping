@@ -18,7 +18,7 @@
                 <input type="text" name="brand" class="form-control">
                 <input type="submit" value="Add Brand" class="btn btn-info mt2"> 
             </form>
-            {% else %}
+            {% elif add_a_product %}
             <h1 class="text-center mt-5"> Add a Product </h1> 
             <form action="/add_product" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
@@ -113,6 +113,37 @@
                 
                 <input type="submit" value="Add product" class="btn btn-info mt2"> 
             </form>
+            {% else %}
+
+             <div class="container mt-5">
+                <table class="table table-sm table-condensed table-striped">
+                    <thead>
+                        <th> SR </th>
+                        <th> Product </th>
+                        <th> Price </th>
+                        <th> Discount </th>
+                        <th> Brand </th>
+                        <th> Image </th>
+                        <th> Edit </th>
+                        <th> Delete </th>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td> {{ loop.index }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }} </td>
+                            <td>{{ product.discount }} %</td>
+                            <td>{{ product.brand.name }}</td>
+                            <td><img src="{{ url_for('static', filename='images/' + product.image_main)}}" width="60" height="60"></td>
+                            <td>edit</td>
+                            <td>delete</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+
             {% endif %}
 
         </div> 
