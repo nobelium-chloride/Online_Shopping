@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        
+            {% if update_brand %}
+            <h1 class="text-center mt-5"> Update Brand </h1>
+            <form action="" method="POST">
+                <input type="text" name="brand_name" class="form-control" value="{{update_brand.name}}">
+                <input type="submit" value="Update Brand" class="btn btn-info mt2"> 
+                <a href="{{ url_for('items.view_brands')}}" class="btn btn-warning" style="margin-top: 0px; margin-left: 10px;"> Cancel </a>
+            </form>
+            {% else %}
+            <h1 class="text-center mt-5"> Update Category </h1>
+            <form action="" method="POST">
+                <input type="text" name="category_name" class="form-control" value="{{update_category.name}}" >
+                <input type="submit" value="Update Category" class="btn btn-info mt2"> 
+                <a href="{{ url_for('items.view_categories')}}" class="btn btn-warning" style="margin-top: 0px; margin-left: 10px;"> Cancel </a>
+            </form>
+            {% endif %}
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}

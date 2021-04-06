@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+
+        {% if view_all_products %}
+        <h1 class="text-center"> List of all products </h1>
+        <table class="table table-sm table-condensed table-striped">
+            <thead>
+                <th> SR </th>
+                <th> Product </th>
+                <th> Price </th>
+                <th> Discount </th>
+                <th> Brand </th>
+                <th> Image </th>
+                <th> Edit</th>
+                <th> Delete</th>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }} </td>
+                    <td>{{ product.discount }} %</td>
+                    <td>{{ product.brand.name }}</td>
+                    <td><img src="{{ url_for('static', filename='images/' + product.image_main)}}" width="60" height="60"></td>
+                    <td><a href="" class="btn btn-sm btn-outline-info"> Edit </a></td>
+                    <td><a href="" class="btn btn-sm btn-outline-danger"> Delete </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% elif view_all_categories %}
+        <h1> List of all Categories </h1>
+        <table class="table table-sm table-condensed table-striped">
+            <thead>
+                <th> SR </th>
+                <th> Name </th>
+                <th> Edit </th>
+                <th> Delete </th>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ category.name }}</td>
+                    <td><a href="{{url_for('items.update_category', id=category.id)}}" class="btn btn-sm btn-outline-info"> Edit </a></td>
+                    <td><a href="" class="btn btn-sm btn-outline-danger"> Delete </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+        {% elif view_all_brands %}
+        <h1 class="text-center"> List all Brands </h1>
+        <table class="table table-sm table-condensed table-striped">
+            <thead>
+                <th> SR </th>
+                <th> Name </th>
+                <th> Edit </th>
+                <th> Delete </th>
+            </thead>
+            <tbody>
+                {% for brand in brands %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ brand.name }}</td>
+                    <td><a href="{{url_for('items.update_brand', id=brand.id)}}" class="btn btn-sm btn-outline-info"> Edit </a></td>
+                    <td><a href="" class="btn btn-sm btn-outline-danger"> Delete </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+
+        {% endif %}
+    </div>
+</div>
+{% endblock%}

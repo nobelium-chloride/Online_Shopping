@@ -30,6 +30,7 @@ photos = UploadSet('photos', IMAGES)
 items = Blueprint('items', __name__, template_folder='../../templates/admin')
 
 
+### INSERT ITEMS ###
 @items.route('/add_category', methods=['GET', 'POST'])
 def add_category():
     # Do some stuff when you push the create category button
@@ -84,17 +85,14 @@ def add_product():
         # Add discriprion and image fields to forms as well as db
         description = request.form['description']
 
-
         #The below can save a file to folder images
         image_main=photos.save(request.files.get('image_main'), name=secrets.token_hex(10) + ".")
         image_1=photos.save(request.files.get('image_1'), name=secrets.token_hex(10) + ".")
         image_2=photos.save(request.files.get('image_2'), name=secrets.token_hex(10) + ".")
         image_3=photos.save(request.files.get('image_3'), name=secrets.token_hex(10) + ".")
-        #image_main.save(image_main)
 
         product = Product(name=name, price=price, stock=stock, discount=discount, color=color, category_id=category_name, brand_id=brand_name, description=description, pub_date=datetime.datetime.utcnow(), image_main=image_main, image_1=image_1,image_2=image_2, image_3=image_3)
         save_changes(product)
-        #db.session.add(product)
         #flash(f'The product {product} has been added to the product table', 'Success')
         return redirect(url_for("items.add_product"))
 
@@ -102,8 +100,69 @@ def add_product():
     return render_template('/category.html', username=username, brands=brand, categories=category, add_a_product="add_a_product")
 
 
-
+### SELECT ALL ITEMS ###
 @items.route('/view_products')
 def view_products():
     products = Product.query.all()
-    return render_template('/category.html', products=products, view_all_products="view_all_products")
+    return render_template('/tables_records.html', products=products, view_all_products="view_all_products")
+
+
+@items.route('/view_categories')
+def view_categories():
+    categories = Category.query.all()
+    return render_template('/tables_records.html', categories=categories, view_all_categories="view_all_categories")
+
+
+@items.route('/view_brands')
+def view_brands():
+    brands = Brand.query.all()
+    return render_template('/tables_records.html', brands=brands, view_all_brands="view_all_brands")
+
+@items.route('/brands')
+def brands():
+    brands = Brand.query.order_by(Brand.id.desc()).all()
+    return render_template('/category.html', brands=brands)
+
+
+### UPDATE ITEMS ###
+@items.route('/update_brand/<int:id>', methods=['GET', 'POST'])
+def update_brand(id):
+    update_brand = Brand.query.get_or_404(id) 
+    brand = request.form.get('brand_name')
+    if request.method == "POST":
+        update_brand.name = brand
+        db.session.commit()
+        return redirect(url_for("items.view_brands"))
+    return render_template('/update_records.html', update_brand=update_brand)
+
+
+@items.route('/update_category/<int:id>', methods=['GET', 'POST'])
+def update_category(id):
+    update_category = Category.query.get_or_404(id) 
+    category = request.form.get('category_name')
+    if request.method == "POST":
+        update_category.name = category
+        db.session.commit()
+        return redirect(url_for("items.view_categories"))
+    return render_template('/update_records.html', update_category=update_category)
+
+
+@items.route('/update_product/<int:id>', methods=['GET', 'POST'])
+def update_product(id):
+    # Work on this
+    return render_template('/update_records.thml', update_product=update_product)
+
+
+
+### DELETE ITEMS ###
+@items.route('/delete_category')
+def delete_category(id):
+    pass
+
+@items.route('/delete_brand')
+def delete_brand(id):
+    pass
+
+@items.route('/delete_product')
+def delete_product(id):
+    pass

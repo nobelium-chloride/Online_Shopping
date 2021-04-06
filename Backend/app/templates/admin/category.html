@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin_base.html" %}
 
 {% block content %}
 <div class="container-fluid">
@@ -114,7 +114,6 @@
                 <input type="submit" value="Add product" class="btn btn-info mt2"> 
             </form>
             {% else %}
-
              <div class="container mt-5">
                 <table class="table table-sm table-condensed table-striped">
                     <thead>
@@ -130,7 +129,7 @@
                     <tbody>
                         {% for product in products %}
                         <tr>
-                            <td> {{ loop.index }}</td>
+                            <td>{{ loop.index }}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.price }} </td>
                             <td>{{ product.discount }} %</td>
@@ -143,7 +142,6 @@
                     </tbody>
                 </table>
             </div>  
-
             {% endif %}
 
         </div> 
