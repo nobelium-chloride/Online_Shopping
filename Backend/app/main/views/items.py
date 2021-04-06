@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, request, url_for, redirect
+from flask import Blueprint, render_template, abort, request, url_for, redirect, current_app, message_flashed, flash
 from jinja2 import TemplateNotFound
 import os
 from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_class
@@ -44,8 +44,8 @@ def add_category():
 
         save_changes(category)
         
-        flash(f'The Category  {category_name} has been added to the database', "success")
-        return redirect(url_for("items.add_category"))
+        flash(f'The Category {category_name} has been added to the database', "success")
+        #return redirect(url_for("items.add_category"))
     return render_template('/category.html', username=username, add_a_category="add_a_category")
 
 
@@ -61,11 +61,9 @@ def add_brand():
         brand = Brand(name=brand_name)
 
         save_changes(brand)
-        
-        #flash(f'The Brand {brand_name} has been added to the database', "success")
+        flash("The Brand {brand_name} has been added to the database", "success")
         return redirect(url_for("items.add_brand"))
     return render_template('/category.html', username=username, add_a_brand="add_a_brand")
-
 
 
 @items.route('/add_product', methods=['GET', 'POST'])
@@ -93,7 +91,7 @@ def add_product():
 
         product = Product(name=name, price=price, stock=stock, discount=discount, color=color, category_id=category_name, brand_id=brand_name, description=description, pub_date=datetime.datetime.utcnow(), image_main=image_main, image_1=image_1,image_2=image_2, image_3=image_3)
         save_changes(product)
-        #flash(f'The product {product} has been added to the product table', 'Success')
+        flash('The product { product } has been added successfully', 'Success')
         return redirect(url_for("items.add_product"))
 
     #products = Product.query.all()
@@ -124,7 +122,7 @@ def brands():
     return render_template('/category.html', brands=brands)
 
 
-### UPDATE ITEMS ###
+### UPDATE ITEMS == Edit Buttons ###
 @items.route('/update_brand/<int:id>', methods=['GET', 'POST'])
 def update_brand(id):
     update_brand = Brand.query.get_or_404(id) 
@@ -132,8 +130,9 @@ def update_brand(id):
     if request.method == "POST":
         update_brand.name = brand
         db.session.commit()
+        #flash(f'The Brand {brand} has been updated to the database', "success")
         return redirect(url_for("items.view_brands"))
-    return render_template('/update_records.html', update_brand=update_brand)
+    return render_template('/update_records.html', edit_a_brand="edit_a_brand", update_brand=update_brand)
 
 
 @items.route('/update_category/<int:id>', methods=['GET', 'POST'])
@@ -150,19 +149,96 @@ def update_category(id):
 @items.route('/update_product/<int:id>', methods=['GET', 'POST'])
 def update_product(id):
     # Work on this
-    return render_template('/update_records.thml', update_product=update_product)
+    brands = Brand.query.all()
+    categories = Category.query.all()
 
+    update_product = Product.query.get_or_404(id)
+
+    name = request.form.get('product')
+    price = request.form.get('price')
+    stock = request.form.get('stock')
+    discount = request.form.get('discount')
+    color = request.form.get('color')
+    category_name = request.form.get('category')
+    brand_name = request.form.get('brand')
+    description = request.form.get('description')
+
+    if request.method == "POST":
+        update_product.name = name
+        update_product.price = price 
+        update_product.stock = stock
+        update_product.discount = discount
+        update_product.color = color
+        update_product.category_id = category_name
+        update_product.brand_id = brand_name
+        update_product.description = description
+
+        if request.files.get('image_main'):
+            try:
+                os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_main))
+                update_product.image_main = photos.save(request.files.get('image_main'), name=secrets.token_hex(10) + ".")
+            except:
+                update_product.image_main=photos.save(request.files.get('image_main'), name=secrets.token_hex(10) + ".")
+
+
+        if request.files.get('image_1'):
+            try:
+                os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_1))
+                update_product.image_1 = photos.save(request.files.get('image_1'), name=secrets.token_hex(10) + ".")
+            except:
+                update_product.image_1 = photos.save(request.files.get('image_1'), name=secrets.token_hex(10) + ".")
+
+
+        if request.files.get('image_2'):
+            try:
+                os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_2))
+                update_product.image_2 = photos.save(request.files.get('image_2'), name=secrets.token_hex(10) + ".")
+            except:
+                update_product.image_2 = photos.save(request.files.get('image_2'), name=secrets.token_hex(10) + ".")
+
+
+        if request.files.get('image_3'):
+            try:
+                os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_3))
+                update_product.image_3 = photos.save(request.files.get('image_3'), name=secrets.token_hex(10) + ".")
+            except:
+                update_product.image_3 = photos.save(request.files.get('image_3'), name=secrets.token_hex(10) + ".")
+
+        db.session.commit()
+        return redirect(url_for("items.view_products"))
+    return render_template('/update_records.html', brands=brands, categories=categories, update_product=update_product)
 
 
 ### DELETE ITEMS ###
-@items.route('/delete_category')
+@items.route('/delete_category/<int:id>', methods=['POST'])
 def delete_category(id):
-    pass
+    category = Category.query.get_or_404(id)
+    if request.method=="POST":
+        db.session.delete(category)
+        db.session.commit()
+        return redirect(url_for('items.view_categories'))
+    flash(f'The Category { category } cannot be deleted', "Warning!")
+    return redirect(url_for('items.view_categories'))
 
-@items.route('/delete_brand')
+
+@items.route('/delete_brand/<int:id>', methods=['POST'])
 def delete_brand(id):
-    pass
+    brand = Brand.query.get_or_404(id)
+    if request.method=="POST":
+        db.session.delete(brand)
+        db.session.commit()
+        return redirect(url_for('items.view_brands'))
+    flash('The Brand { brand } cannot be deleted', "Warning!")
+    return redirect(url_for('items.view_brands'))
 
-@items.route('/delete_product')
+
+@items.route('/delete_product/<int:id>', methods=['POST'])
 def delete_product(id):
-    pass
+    product = Product.query.get_or_404(id)
+    if request.method=="POST":
+        db.session.delete(product)
+        db.session.commit()
+        flash('The Product { product } has been deleted', "Success!")
+        return redirect(url_for('items.view_products'))
+    flash(f'The Product { product } cannot be deleted', "Warning!")
+    return redirect(url_for('items.view_products'))

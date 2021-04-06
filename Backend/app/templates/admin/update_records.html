@@ -1,24 +1,121 @@
 {% extends "base.html" %}
 
+{% include "_messages.html" %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
         
-            {% if update_brand %}
+            {% if edit_a_brand %}
             <h1 class="text-center mt-5"> Update Brand </h1>
             <form action="" method="POST">
                 <input type="text" name="brand_name" class="form-control" value="{{update_brand.name}}">
                 <input type="submit" value="Update Brand" class="btn btn-info mt2"> 
                 <a href="{{ url_for('items.view_brands')}}" class="btn btn-warning" style="margin-top: 0px; margin-left: 10px;"> Cancel </a>
             </form>
-            {% else %}
+            {% elif update_category %}
             <h1 class="text-center mt-5"> Update Category </h1>
             <form action="" method="POST">
                 <input type="text" name="category_name" class="form-control" value="{{update_category.name}}" >
                 <input type="submit" value="Update Category" class="btn btn-info mt2"> 
                 <a href="{{ url_for('items.view_categories')}}" class="btn btn-warning" style="margin-top: 0px; margin-left: 10px;"> Cancel </a>
+            </form>
+            {% else %}
+            <h1 class="text-center mt-5"> Update Product </h1> 
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="product">Name</label>
+                    <input type="text" class="form-control" name="product" id="product" placeholder="Product name" value="{{update_product.name}}">
+               </div> 
+
+               <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="category"> Product Category</label>
+                      <select name="category" id="category" class="form-control" required>
+                        <option value="{{ update_product.category_id }}"> {{ update_product.category.name}} </option>
+                        {% for category in categories %}
+                        <option value="{{category.id }}"> {{category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="brand">Product Brand</label>
+                        <select name="brand" id="brand" class="form-control" required>
+                            <option value="{{ update_product.brand_id}}"> {{update_product.brand.name}}</option>
+                            {% for brand in brands %}
+                            <option value="{{ brand.id }}"> {{ brand.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="price">Price</label>
+                      <input type="text" class="form-control" name='price' id='price' placeholder="Price" value="{{update_product.price}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="discount">Discount</label>
+                      <input type="text" class="form-control" name='discount' id='discount' placeholder="Discount" value="{{update_product.discount}}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="stock">Stock</label>
+                      <input type="text" class="form-control" name='stock' id='price' placeholder="Stock" value="{{update_product.stock}}">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="color">Color</label>
+                      <input type="text" class="form-control" name='color' id='color' placeholder="Color" value="{{update_product.color}}">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" name="description" id="description" rows="4" cols="10" placeholder="Product Description">{{update_product.description}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image_main">Main Image</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_main" accept=".jpg, .jpeg, .png" multiple>
+                        <label class="custom-file-label" for="validatedCustomFile"></label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                </div>
+
+                <div class="form-row">
+                   <div class="form-group col-md-4">
+                       <label for="image_1">Image_1</label>
+                       <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_1" accept=".jpg, .jpeg, .png" multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="image_2">image_2</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_2" accept=".jpg, .jpeg, .png" multiple>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                          </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="image_3">image_3</label>
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="image_3" accept=".jpg, .jpeg, .png" multiple>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Update product" class="btn btn-info mt2"> 
+                <a href="{{ url_for('items.view_products')}}" class="btn btn-warning" style="margin-top: 0px; margin-left: 10px;"> Cancel </a>
             </form>
             {% endif %}
         <div class="col-md-3"></div>
