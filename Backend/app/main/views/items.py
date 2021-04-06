@@ -236,6 +236,14 @@ def delete_brand(id):
 def delete_product(id):
     product = Product.query.get_or_404(id)
     if request.method=="POST":
+        try: 
+            os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_main))
+            os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_1))
+            os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_2))
+            os.unlink(os.path.join(current_app.root_path, "../static/images/" + update_product.image_3))
+        except Exception as e:
+            print(e)
+
         db.session.delete(product)
         db.session.commit()
         flash('The Product { product } has been deleted', "Success!")
