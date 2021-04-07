@@ -20,10 +20,12 @@ import secrets
 from werkzeug import secure_filename, FileStorage
 import datetime
 
+
 # import the 
 from ..controller.auth_controller import Auth
 from ..service.auth_helper import login_user
 from .home import login
+
 
 photos = UploadSet('photos', IMAGES)
 

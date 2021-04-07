@@ -8,6 +8,7 @@ from flask import Flask, Blueprint, render_template, abort, request, url_for, re
 from flask_login import current_user, login_user, login_manager, LoginManager, logout_user, login_required, utils
 from jinja2 import TemplateNotFound
 from ..model.user import User
+from ..model.product import Product, Category, Brand
 from .. import db, flask_bcrypt
 import jwt
 import uuid
@@ -18,6 +19,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #from flask.ext.login import LoginManager
 import crypt
 import bcrypt
+from ..config import *
 
 
 # import the 
@@ -38,7 +40,10 @@ def index():
     if 'username' in session:
         #return 'you are already logged as, {}!'.format(escape(session['username']))
         return render_template('/userhome.html')
-    return render_template('/index.html')
+    
+    products = Product.query.filter(Product.stock > 0)
+
+    return render_template('/index.html', products=products)
 
 
 

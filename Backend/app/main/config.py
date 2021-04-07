@@ -9,6 +9,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious_secret_key')
     DEBUG = False
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, '../static/images')
 
 
 class DevelopmentConfig(Config):
