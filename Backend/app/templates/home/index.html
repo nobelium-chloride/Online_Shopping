@@ -206,7 +206,7 @@
                 <!-- Category & Title -->
                 <h5 class="card-title mb-1">
                   <strong>
-                    <a href="" class="dark-grey-text">{{product.name }}</a>
+                    <a href="{{url_for('items.product_details', id = product.id)}}" class="dark-grey-text">{{product.name }}</a>
                   </strong>
                 </h5>
                 <span class="badge badge-danger mb-2 ml-1">bestseller</span>
@@ -297,7 +297,5 @@
         <li class="page-item"><a class="page-link">Last</a></li>
       </ul>
     </nav>
-
-
 
 {% endblock %}

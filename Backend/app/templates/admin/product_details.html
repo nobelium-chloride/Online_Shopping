@@ -4,14 +4,14 @@
 
    <!-- THIS CODE SHOULD GO UNDER PRODUCT DETAILS; WHEN YOU CLICK "details" BUTTON ON ABOVE CONTAINER -->
      <!-- https://mdbootstrap.com/snippets/jquery/marta-szymanska/1451648#css-tab-view -->
-     <div class="container my-5 py-5 z-depth-1">
+     <div class="container my-3 py-3 z-depth-1">
 
 
         <!--Section: Content-->
         <section class="text-center">
       
           <!-- Section heading -->
-          <h3 class="font-weight-bold mb-5">Product Details</h3>
+          <h3 class="font-weight-bold mb-3">Product Details</h3>
       
           <div class="row">
             <div class="col-lg-6">
@@ -33,7 +33,6 @@
                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/20.jpg"
                       alt="Third slide" class="img-fluid">
                   </div>
-                </div>
                 <!--/.Slides-->
       
                 <!--Thumbnails-->
@@ -49,6 +48,7 @@
       
               </div>
               <!--/.Carousel Wrapper-->
+            </div>
               
               <div class="row mb-4">
                 <div class="col-md-12">
@@ -78,18 +78,16 @@
                   </div>
                 </div>
               </div>
-              
             </div>
       
             <div class="col-lg-5 text-center text-md-left">
-      
-              <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">iPad PRO</h2>
+              <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">{{product.name}}</h2>
               <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
               <span class="badge badge-success product mb-4 ml-2">SALE</span>
       
               <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
                 <span class="red-text font-weight-bold">
-                  <strong>$1449</strong>
+                  <strong>R {{product.price}}</strong>
                 </span>
                 <span class="grey-text">
                   <small>
@@ -100,7 +98,7 @@
       
               <div class="font-weight-normal">
                 
-                <p class="ml-xl-0 ml-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente nesciunt atque nemo neque ut officiis nostrum incidunt maiores, magni optio et sunt suscipit iusto nisi totam quis, nobis mollitia necessitatibus.</p>
+                <p class="ml-xl-0 ml-4">{{product.description}}</p>
       
                 <p class="ml-xl-0 ml-4">
                   <strong>Storage: </strong>64GB</p>
@@ -145,7 +143,6 @@
       
             </div>
           </div>
-      
         </section>
         <!--Section: Content-->
       </div>

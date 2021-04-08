@@ -181,6 +181,15 @@ def availability():
     return render_template('/products_filter.html', stock=stock, no_stock=no_stock)
 ### SELECT PRODUCTS BY STOCK/AVAILABILITY ######
 
+
+###ITEM DETAILS ####
+@items.route('/product/<int:id>')
+def product_details(id):
+    product = Product.query.get_or_404(id)
+    return render_template('/product_details.html', product=product)
+
+###ITEM DETAILS ####
+
 #*********
 ### UPDATE ITEMS == Edit Buttons ###
 @items.route('/update_brand/<int:id>', methods=['GET', 'POST'])
