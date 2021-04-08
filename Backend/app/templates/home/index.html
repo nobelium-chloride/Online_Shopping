@@ -101,6 +101,8 @@
 
     <section>
 
+
+
       <!-- Carousel Wrapper -->
       <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
         <!-- Indicators -->
@@ -185,7 +187,7 @@
     
         <!-- Grid row -->
       <div class="row">
-        {% for product in products %}
+        {% for product in products.items %}
           <!-- Grid column -->
           <div class="col-lg-3 col-md-6 mb-4">
             <!-- Card -->
@@ -204,7 +206,7 @@
                 <!-- Category & Title -->
                 <h5 class="card-title mb-1">
                   <strong>
-                    <a href="" class="dark-grey-text">{{ product.name }}</a>
+                    <a href="" class="dark-grey-text">{{product.name }}</a>
                   </strong>
                 </h5>
                 <span class="badge badge-danger mb-2 ml-1">bestseller</span>
@@ -249,7 +251,6 @@
           
           </div>
           <!-- Grid column -->
-
           {% endfor %}
         </div>
       </section>
@@ -262,23 +263,37 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination pagination-circle pg-blue">
         <li class="page-item disabled"><a class="page-link">First</a></li>
-        <li class="page-item disabled">
-          <a class="page-link" aria-label="Previous">
+        {% if products.has_prev %}
+        <li class="page-item">
+          <a href="{{url_for('home.index', page=products.prev_num)}}" class="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item active"><a class="page-link">1</a></li>
-        <li class="page-item"><a class="page-link">2</a></li>
-        <li class="page-item"><a class="page-link">3</a></li>
-        <li class="page-item"><a class="page-link">4</a></li>
-        <li class="page-item"><a class="page-link">5</a></li>
+        {% endif %}
+        {% for page_num in products.iter_pages() %}
+        {% if page_num %}
+        {% if products.page == page_num %}
+        <li class="page-item active">
+          <a href="{{url_for('home.index', page=page_num)}}" class="page-link">{{page_num}}</a>
+        </li>
+        {% else %}
         <li class="page-item">
-          <a class="page-link" aria-label="Next">
+          <a href="{{url_for('home.index', page=page_num)}}" class="page-link">{{page_num}}</a>
+        </li>
+        {% endif %}
+        {% else %}
+        ...
+        {% endif %}
+        {% endfor %}
+        {% if products.has_next %} 
+        <li class="page-item">
+          <a href="{{url_for('home.index', page=products.next_num)}}" class="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only"> Next</span> 
           </a>
         </li>
+        {% endif %}
         <li class="page-item"><a class="page-link">Last</a></li>
       </ul>
     </nav>

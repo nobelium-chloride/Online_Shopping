@@ -32,6 +32,19 @@ photos = UploadSet('photos', IMAGES)
 items = Blueprint('items', __name__, template_folder='../../templates/admin')
 
 
+#Loads and index page whe UI starts/opens, this open very well
+#@items.route('/')
+#def index():
+    #if 'username' in session:
+        #return 'you are already logged as, {}!'.format(escape(session['username']))
+        #return render_template('/userhome.html')
+    #products = Product.query.filter(Product.stock > 0)
+#    products = Product.query.filter(Product.price == 100)
+#    brands = Brand.query.all()
+ #   return render_template('/index.html', products=products, brands=brands)
+
+
+
 ### INSERT ITEMS ###
 @items.route('/add_category', methods=['GET', 'POST'])
 def add_category():
@@ -122,8 +135,53 @@ def view_brands():
 def brands():
     brands = Brand.query.order_by(Brand.id.desc()).all()
     return render_template('/category.html', brands=brands)
+#### SELECT ALL ITEMS ####
 
+#### Opend the filer_by page when you click on product menu list
+@items.route('/filter_by')
+def filter_by():
+    product = Product.query.all()
+    return render_template('/products_filter.html', products=product)
 
+#**********
+#NEED TO WORK ON THIS
+### SELECT PRODUCTS BY BRAND ######
+@items.route('/filter_by_brand/<int:id>')
+def filter_by_brand(id):
+    #product = Product.query.all()
+    brandid = Brand.query.all()
+    brand_name = request.form['search_filter']
+    if brand_name.id in brandid:
+        p = Product.query.filter_by(brand_id=id)
+        
+        return render_template('/products_filter.html', p=p, brandid=brandid, filterbybrand="filterbybrand")
+### SELECT PRODUCTS BY BRAND #####
+
+#********
+### SELECT PRODUCTS BY CATEGORY ######
+
+### SELECT PRODUCTS BY CATEGORY #####
+
+#********
+### SELECT PRODUCTS BY PRICE ######
+
+### SELECT PRODUCTS BY PRICE #####
+
+#********
+### SELECT PRODUCTS BY DISCOUNT ######
+
+### SELECT PRODUCTS BY DISCOUNT ######
+
+#********
+### SELECT PRODUCTS BY STOCK/AVAILABILITY ######
+@items.route('/availability')
+def availability():
+    stock = Product.query.filter(Product.stock > 0)
+    no_stock = Product.query.filter(Product.stock < 0)
+    return render_template('/products_filter.html', stock=stock, no_stock=no_stock)
+### SELECT PRODUCTS BY STOCK/AVAILABILITY ######
+
+#*********
 ### UPDATE ITEMS == Edit Buttons ###
 @items.route('/update_brand/<int:id>', methods=['GET', 'POST'])
 def update_brand(id):

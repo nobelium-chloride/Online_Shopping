@@ -34,17 +34,18 @@ home = Blueprint('home', __name__, template_folder='../../templates/home')
 #to work on this. Not working
 #login_manager.login_view = 'login'
 
+
+### MOVED THIS BIT TO THE ITEMS BLUEPRINT ###
 #Loads and index page whe UI starts/opens, this open very well
 @home.route('/')
 def index():
-    if 'username' in session:
-        #return 'you are already logged as, {}!'.format(escape(session['username']))
-        return render_template('/userhome.html')
-    
-    products = Product.query.filter(Product.stock > 0)
-
+    #if 'username' in session:
+        # return 'you are already logged as, {}!'.format(escape(session['username']))
+        #return render_template('/userhome.html')
+    page = request.args.get('page',1,type=int)
+    products = Product.query.filter(Product.stock > 0).paginate(page=page, per_page=4)
+    #brands = Brand.query.all()
     return render_template('/index.html', products=products)
-
 
 
 #Login with details in the db/data created by API
@@ -103,7 +104,6 @@ def logout():
 
     #logout user by removing "user id"
     logout_user()
-    
     return redirect(url_for('home.index'))
 
 
