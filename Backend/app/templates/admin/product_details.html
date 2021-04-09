@@ -133,8 +133,22 @@
                   </div>
                   <div class="row mt-3 mb-4">
                     <div class="col-md-12 text-center text-md-left text-md-right">
-                      <button class="btn btn-primary btn-rounded">
-                        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
+
+                      <form action="" method="POST">
+                        <input name="product_id" type="hidden" value="{{product.id}}">
+                        <button class="btn btn-primary btn-rounded mr-5" type="submit">
+                        <i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
+                        <label for=""> Quantity:</label>
+                        <input type="number" name="quantity" value="1" min="1" max="{{product.stock}}" class="mr-5">
+                        {% set colors = product.color.split(',') %}
+                        <select name="colors" id="">
+                        {% for color in colors %}
+                          {% set col = color.split(':') %}
+                          <option value="{{col[0]}}">{{col[0] | capitalize}}</option>
+                        </select>
+                        {% endfor %}
+                      </form>
+
                     </div>
                   </div>
                 </div>
@@ -151,7 +165,7 @@
               <script>
                 // MDB Lightbox Init
                 $(function () {
-                  $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+                  $("mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
                 });
               </script>
           <!-- JS for above to work -->
