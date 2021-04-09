@@ -70,6 +70,7 @@ def login():
                 session['username'] = user.username
                 session['first_name'] = user.first_name
                 
+                
                 flash('You have successfully logged in as admin.', "success")
                 print('Admin Username and Passwords match', user.username)
                 return render_template('/adminDashboard.html', username=username)

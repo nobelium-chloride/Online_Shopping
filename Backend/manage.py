@@ -17,7 +17,7 @@ from app import blueprint
 from app.main.views.home import home
 from app.main.views.profile import profile
 from app.main.views.items import items
-
+from app.main.views.cart import cart
 
 
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
@@ -28,6 +28,7 @@ app.register_blueprint(blueprint)
 app.register_blueprint(home)
 app.register_blueprint(profile)
 app.register_blueprint(items)
+app.register_blueprint(cart)
 
 #login Manager to use the login/logout functions/methods
 login_manager = LoginManager()
