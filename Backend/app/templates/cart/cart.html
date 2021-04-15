@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2> Your cart items </h2>
+    <div class="row">
+        <div class="col">
+            <p> Your cart has (quantity) items. You do not qualify for free delivery </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col border">
+        </div>
+        <div class="col">
+            <table class="table table-sm table-condensed table-striped">
+                <tbody>
+                    <tr>
+                        <td class="row-header" role="rowheader">Size</td>
+                        <td>size size</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header" role="rowheader">Color</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="row-header" role="rowheader">Unit Price</td>
+                        <td>R&nbsp;0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Discount</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Unit Price</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Total</h5></td>
+                        <td><h5>R&nbsp;0.00</h5></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

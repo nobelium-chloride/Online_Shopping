@@ -69,5 +69,7 @@ def add_to_cart():
         return redirect(request.referrer)
 
 
-
-
+# Feature to view cart items
+@cart.route('/view_cart_items')
+def view_cart_items():
+    return render_template('/cart/cart.html')
