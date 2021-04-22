@@ -69,5 +69,17 @@ def add_to_cart():
         return redirect(request.referrer)
 
 
-
-
+# Feature to view cart items
+@cart.route('/view_cart_items')
+def view_cart_items():
+    if 'shopping_cart' not in session:
+        return redirect(request.referrer)
+    
+    total = 0
+    grandtotal = 0
+    total_discount = 0
+    for key, product in session['shopping_cart'].items():
+        total_discount += (float(product['discount']/100) * float(product['price'])) * int(product['quantity'])
+        total += (float(product['price']) * int(product['quantity']))
+        grandtotal = float("%.2f" % (total)) - total_discount
+    return render_template('/cart/cart.html', grandtotal=grandtotal, total_discount=total_discount)

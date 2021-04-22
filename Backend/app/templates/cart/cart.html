@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2> Your cart items </h2>
+    <div class="row">
+        <div class="col">
+            <p> Your cart has (quantity) items. You do not qualify for free delivery </p>
+            <a href="/"> Continue Shopping </a>
+        </div>
+    </div>
+    
+    {% for key , product in session['shopping_cart'].items() %}
+    <div class="row pt-4">
+        <div class="col-md-4 border">
+          
+        </div>
+        <div class="col-md-8">
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true" style="color:red;">&times;</span>
+                <a href="#"></a>
+            </button>
+            <table class="table table-sm ">
+                <tbody>
+                    <tr>
+                        <h4><a href="#" class="dark-grey-text">{{product.name }}</a></h4>
+                    </tr>
+                    <tr>
+                        <td class="row-header" role="rowheader">Size</td>
+                        <td>size size</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header" role="rowheader">Color</td>
+                        <td>{{product.color}}</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header" role="rowheader">Unit Price</td>
+                        <td>R&nbsp;{{product.price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td>{{product.quantity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Discount</td>
+                        {% if product.discount > 0 %}
+                        <td>{{product.discount}}&nbsp;%</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Discount Price</td>
+                        {% set discount = "%0.2f" | format((product.discount/100) * product.price|float) %}
+                        <td>R&nbsp;{{discount}}</td>
+                    </tr>
+                    <tr>
+                        <td><h5>Total</h5></td>
+                        {% set subtotal = product.quantity|int * product.price|float %}
+                        {% set total = "%0.2f" | format((subtotal|float) - discount|float)%}
+                        <td><h5>R&nbsp;{{total}}</h5></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row">
+        <table class="table table-sm">
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <h3 class="text-center">Your Order</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delivery fee</td>
+                    <td>R&nbsp;{{total}}</td>
+                </tr>
+                <tr>
+                    <td>Total Discount</td>
+                    <td>R&nbsp;{{total_discount}}</td>
+                </tr>
+                <tr>
+                    <td>Voucher Amount</td>
+                    <td>{{ total }}</td>
+                </tr>
+                <tr>
+                    <td>Total to Pay</td>
+                    <td>R&nbsp;{{grandtotal}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+</div>
+{% endblock %}

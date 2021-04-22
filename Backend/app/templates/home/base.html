@@ -65,7 +65,7 @@
                 </li> 
 
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">cart({{session['shopping_cart']|length}})</a>
+                    <a class="nav-link disabled" href="{{url_for('cart.view_cart_items')}}" tabindex="-1" aria-disabled="true">cart({{session['shopping_cart']|length}})</a>
                 </li>
             </ul>
     
@@ -80,15 +80,13 @@
                         <a class="dropdown-item" href="/register">Create Account</a>
                     </div>
                 </li>
-                
                 <li class="nav-item">
                     <span id="cart" class="">
-                        <a href="#" onclick="ga('send', 'event', 'Top Navigation', 'Click', 'Shopping Cart');"><i class="fa fa-shopping-cart cart" style="color:black !important"><span class="badge" id="ItemsCount">{{session['shopping_cart']|length}}</span></i></a>
+                        <a href="{{url_for('cart.view_cart_items')}}" onclick="ga('send', 'event', 'Top Navigation', 'Click', 'Shopping Cart');"><i class="fa fa-shopping-cart cart" style="color:black !important"><span class="badge" id="ItemsCount">{{session['shopping_cart']|length}}</span></i></a>
                     </span>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="/about">Profile</a>
