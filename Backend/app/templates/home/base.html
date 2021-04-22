@@ -68,10 +68,9 @@
                     <a class="nav-link disabled" href="{{url_for('cart.view_cart_items')}}" tabindex="-1" aria-disabled="true">cart({{session['shopping_cart']|length}})</a>
                 </li>
             </ul>
-    
-            
+  
             <ul class="navbar-nav">
-                
+                {% if 'username' not in session %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
@@ -80,6 +79,7 @@
                         <a class="dropdown-item" href="/register">Create Account</a>
                     </div>
                 </li>
+                {% else %}
                 <li class="nav-item">
                     <span id="cart" class="">
                         <a href="{{url_for('cart.view_cart_items')}}" onclick="ga('send', 'event', 'Top Navigation', 'Click', 'Shopping Cart');"><i class="fa fa-shopping-cart cart" style="color:black !important"><span class="badge" id="ItemsCount">{{session['shopping_cart']|length}}</span></i></a>
@@ -97,7 +97,7 @@
                       <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
                   </li>
-                  
+                {% endif %}
             </ul>
             
         </div>
