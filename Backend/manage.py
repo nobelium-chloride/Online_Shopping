@@ -32,8 +32,8 @@ app.register_blueprint(cart)
 
 #login Manager to use the login/logout functions/methods
 login_manager = LoginManager()
-login_manager.login_view = '/home.login' # Just added this
 login_manager.init_app(app)
+login_manager.login_view = '/home.login' # Just added this
 
 
 app.app_context().push()

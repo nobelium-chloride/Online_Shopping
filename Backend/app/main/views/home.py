@@ -70,7 +70,6 @@ def login():
                 session['username'] = user.username
                 session['first_name'] = user.first_name
                 
-                
                 flash('You have successfully logged in as admin.', "success")
                 print('Admin Username and Passwords match', user.username)
                 return render_template('/adminDashboard.html', username=username)
@@ -88,7 +87,8 @@ def login():
 
             flash('You have successfully logged in.', "success")
             print('Username and Passowords match', user.username)
-        return render_template('/userhome.html', username=username, email=user.email, first_name=user.first_name) 
+        #return render_template('/userHome.html', username=username, email=user.email, first_name=user.first_name)
+        return redirect(url_for('home.index'))
 
     print('Please enter username and/or password')
     return render_template('/login.html')

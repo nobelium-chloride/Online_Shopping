@@ -8,7 +8,6 @@ from ..config import key
 from typing import Union
 from sqlalchemy_utils import CountryType, Country
 
-
 class User(db.Model, UserMixin):
     """ User Model for storing user related details """
     __tablename__ = "user"

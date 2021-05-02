@@ -104,31 +104,47 @@
 <hr>
 
 <!---- THIS IS profile for user Account Information -->
-<div class="container border">
+<div class="container">
+  <h3 class="text-center">Welcome to Dnecs Page, {{ username }}</h3>
+  <hr>
+<div class="row">
+<div class="col-md-2"></div>
+
+
+<div class="col-md-8">
   <div class="row">
-    <div class="col-4">
-      <label for="username" class="text-info">Username : </label><br>
+    <div class="col-sm-4">
+      <label for="username" class="text-info">Username</label><br>
     </div>
-    <div class="col-8">
+    <div class="col-sm-6">
       <label for="username" class="text-info"> {{ username }}</label>
-      <a href="#" class="icon icon-edit">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </a>
     </div>
-    <input type="text" name="username" id="username" class="form-control">
+    <div class="col-sm-2">
+      <a href="#" class="icon icon-edit"><i class="fa fa-pencil" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i></a>
+    </div>
   </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <form action="" method="POST">
+        <input type="text" name="username" class="form-control" value="{{username}}">
+        <input type="submit" value="Update Username" class="btn btn-info mt2"> 
+        <a href="#" class="btn btn-warning" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Cancel </a>
+      </form>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-sm-4">
       <label for="name" class="text-info">Name :</label>
     </div>
-    <div class="col-sm-8">
-      <label for="name" class="text-info"> {{ first_name }}</label>
-      <a href="#" class="icon icon-edit">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </a>
+    <div class="col-sm-6">
+      <label for="first_name" class="text-info"> {{ first_name }}</label>
     </div>
-    <input type="text" name="name" id="name" class="form-control">
+    <div class="col-sm-2">
+      <a href="#" class="icon icon-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    </div>
   </div>
+
   <div class="row">
     <div class="col-sm-4">
       <label for="surname" class="text-info">Surname :</label><br>
@@ -139,8 +155,8 @@
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </a>
     </div>
-    <input type="text" name="surname" id="surname" class="form-control">
   </div>
+
   <div class="row">
     <div class="col-sm-4">
       <label for="passowrd" class="text-info">Password :</label><br>
@@ -151,8 +167,8 @@
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </a>
     </div>
-    <input type="password" name="password" id="password" value="********" class="form-control">
   </div>
+
   <div class="row">
     <div class="col-sm-4">
       <label for="email" class="text-info">email address :</label><br>
@@ -163,8 +179,8 @@
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </a>
     </div>
-    <input type="text" name="username" id="username" class="form-control">
   </div>
+
   <div class="row">
     <div class="col-sm-4">
       <label for="contact" class="text-info">contact :</label><br>
@@ -175,9 +191,14 @@
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </a>
     </div>
-    <input type="text" name="contact" id="contact" class="form-control">
   </div>
-</div> 
+</div>
+
+  <div class="col-md-2"></div>
+</div>
+</div>
+
+
 {% endblock %}
 
 
