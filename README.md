@@ -1,4 +1,7 @@
-# Online_Shopping
+# Basic clone of online-shopping but forked
+
+coursera
+stride-cohort-4
 
 #This project is an extension of:
 #Project - https://www.freecodecamp.org/news/structuring-a-flask-restplus-web-service-for-production-builds-c2ec676de563/
@@ -12,4 +15,3 @@ $ python manage.py db stamp head
 $ python manage db migrate -- message "<ENTER CHANGES YOU MADE TO DB>"
 $ python manage db upgrade
   
-2. 
